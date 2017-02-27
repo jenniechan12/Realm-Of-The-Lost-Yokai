@@ -1,0 +1,2940 @@
+fileFormatVersion: 2
+guid: cd669d5de0bb0474fabf7aae364dfdb5
+timeCreated: 1487616198
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Grass00_00
+    21300002: Grass00_01
+    21300004: Grass00_02
+    21300006: Grass00_03
+    21300008: Grass00_04
+    21300010: Grass00_05
+    21300012: Grass00_06
+    21300014: Grass00_07
+    21300016: Grass00_08
+    21300018: Grass00_09
+    21300020: Grass00_10
+    21300022: Grass00_11
+    21300024: Grass00_12
+    21300026: Grass00_13
+    21300028: Tree00_00
+    21300030: Tree00_01
+    21300032: BlackHole
+    21300034: Tree01_01
+    21300036: Tree01_00
+    21300038: Tree01_02
+    21300040: Grass01_00
+    21300042: Tree01_03
+    21300044: Tree01_04
+    21300046: Tree01_05
+    21300048: Tree01_06
+    21300050: Tree01_07
+    21300052: Tree01_08
+    21300054: Tree01_09
+    21300056: Grass02_00
+    21300058: Grass02_01
+    21300060: Grass02_02
+    21300062: Grass02_03
+    21300064: Grass02_05
+    21300066: Grass02_06
+    21300068: Grass02_07
+    21300070: Grass02_08
+    21300072: Grass02_09
+    21300074: Grass02_10
+    21300076: Grass02_13
+    21300078: Grass02_12
+    21300080: Grass02_11
+    21300082: Grass02_14
+    21300084: Grass02_15
+    21300086: Grass02_16
+    21300088: Grass02_19
+    21300090: Grass02_20
+    21300092: Grass02_17
+    21300094: Grass02_21
+    21300096: Grass02_23
+    21300098: Tree01_10
+    21300100: Tree01_11
+    21300102: Flower_Pink_00
+    21300104: Flower_Pink_01
+    21300106: Flower_Pink_02
+    21300108: Flower_Pink_03
+    21300110: Flower_Pink_04
+    21300112: Tree01_12
+    21300114: Flower_Pink_05
+    21300116: Flower_Pink_06
+    21300118: Grass03_00
+    21300120: Grass03_01
+    21300122: Grass03_02
+    21300124: Grass03_03
+    21300126: Grass03_05
+    21300128: Grass03_06
+    21300130: Grass03_07
+    21300132: Grass03_08
+    21300134: Grass03_09
+    21300136: Grass03_10
+    21300138: Grass03_14
+    21300140: Grass03_11
+    21300142: Grass03_12
+    21300144: Grass03_13
+    21300146: Grass03_17
+    21300148: Grass03_21
+    21300150: Grass03_15
+    21300152: Grass03_16
+    21300154: Grass03_19
+    21300156: Grass03_20
+    21300158: Grass04_00
+    21300160: Grass04_01
+    21300162: Grass04_02
+    21300164: Grass04_03
+    21300166: Grass04_04
+    21300168: Grass04_05
+    21300170: Grass04_06
+    21300172: Grass04_07
+    21300174: Grass04_08
+    21300176: Grass04_09
+    21300178: Grass04_10
+    21300180: Grass04_11
+    21300182: Grass04_12
+    21300184: Grass04_13
+    21300186: Grass04_14
+    21300188: Grass04_15
+    21300190: Grass04_16
+    21300192: Grass04_17
+    21300194: Grass04_18
+    21300196: Grass04_19
+    21300198: Flower_Orange_00
+    21300200: Flower_Orange_01
+    21300202: pokemontile_0
+    21300204: Flower_Peach_01
+    21300206: Flower_Peach_02
+    21300208: Flower_Peach_03
+    21300210: Flower_Peach_04
+    21300212: Flower_Yellow_01
+    21300214: Flower_Yellow_02
+    21300216: Flower_Yellow_03
+    21300218: Flower_Yellow_04
+    21300220: Flower_Blue_01
+    21300222: Flower_Blue_02
+    21300224: Flower_Blue_03
+    21300226: Flower_Blue_04
+    21300228: Flower_Purple_01
+    21300230: Flower_Purple_02
+    21300232: Flower_Purple_03
+    21300234: Flower_Purple_04
+    21300236: Flower_Red_01
+    21300238: Flower_Red_02
+    21300240: Flower_Red_03
+    21300242: Flower_Red_04
+    21300244: Flower_Grey_01
+    21300246: Flower_Grey_02
+    21300248: Flower_Grey_03
+    21300250: Flower_Grey_04
+    21300252: Cave_Door_00
+    21300254: Cave_Door_01
+    21300256: Cave_Door_02
+    21300258: Cave_Door_03
+    21300260: Cave_Door_04
+    21300262: Cave_Door_05
+    21300264: Cave_Door_06
+    21300266: Cliff00_00
+    21300268: Cliff00_01
+    21300270: Cliff00_02
+    21300272: Cliff00_03
+    21300274: Cliff00_04
+    21300276: Cliff00_05
+    21300278: Cliff00_06
+    21300280: Cliff01_00
+    21300282: Cliff01_01
+    21300284: Cliff01_02
+    21300286: Cliff01_03
+    21300288: Cliff01_04
+    21300290: Sign00_00
+    21300292: Sign00_01
+    21300294: Sign01_00
+    21300296: Sign01_01
+    21300298: Sign02_00
+    21300300: Sign03_00
+    21300302: Sign03_01
+    21300304: Cliff01_06
+    21300306: Cliff01_07
+    21300308: Cliff01_08
+    21300310: Cliff_Water_00
+    21300312: Cliff_Water_02
+    21300314: Cliff_Water_01
+    21300316: Water00
+    21300318: Entrance0
+    21300320: Grass05_00
+    21300322: Grass05_01
+    21300324: Grass05_02
+    21300326: Grass05_03
+    21300328: Grass05_04
+    21300330: Grass05_05
+    21300332: Grass05_06
+    21300334: Grass05_07
+    21300336: Grass05_08
+    21300338: Grass05_09
+    21300340: Grass05_10
+    21300342: Grass05_11
+    21300344: Grass05_12
+    21300346: Cliff05_10
+    21300348: Fence00_00
+    21300350: Fence00_01
+    21300352: Fence01_00
+    21300354: Fence01_02
+    21300356: Tile00_00
+    21300358: Tile00_01
+    21300360: Tile00_02
+    21300362: Tile00_03
+    21300364: Tile00_04
+    21300366: Tile00_05
+    21300368: Tile00_06
+    21300370: Tile00_07
+    21300372: Tile00_08
+    21300374: Pillar00_01
+    21300376: pokemontile_1
+    21300378: Pillar00_02
+    21300380: Pillar00_03
+    21300382: Pillar00_04
+    21300384: Tile01_00
+    21300386: Tile01_01
+    21300388: Tile01_02
+    21300390: Tile01_03
+    21300392: Tile01_04
+    21300394: Tile01_05
+    21300396: Tile01_06
+    21300398: Tile01_07
+    21300400: Tile01_08
+    21300402: Stair00_00
+    21300404: Stair00_01
+    21300406: Stair00_02
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 8192
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 1
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Grass00_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7760
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7760
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7760
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_03
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7744
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_04
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7744
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_05
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7744
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7728
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_07
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7728
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_08
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7728
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_09
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7760
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7744
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7728
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7712
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass00_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7712
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree00_00
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7712
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree00_01
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7680
+        width: 32
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BlackHole
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7712
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7632
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_00
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7648
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7648
+        width: 16
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass01_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7648
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_03
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7664
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_04
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7648
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_05
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7632
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_06
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7632
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_07
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7616
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_08
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_09
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7632
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7632
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7632
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_03
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7616
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_05
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_06
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_07
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_08
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_09
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7584
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_12
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7584
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7584
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7584
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7568
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7568
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7552
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7552
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7568
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7552
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass02_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7552
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7584
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7584
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Pink_00
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7584
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Pink_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7584
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Pink_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7552
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Pink_03
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7520
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Pink_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7488
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree01_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7536
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Pink_05
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7504
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Pink_06
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7536
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7536
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7536
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_03
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7520
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_05
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7520
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_06
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7520
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_07
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7520
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_08
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7504
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_09
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7504
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7504
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7488
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7488
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_12
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7488
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7488
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7472
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7456
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7471
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7471
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7456
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass03_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7456
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7440
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7440
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7440
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_03
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7424
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_04
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7392
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_05
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7376
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_06
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_07
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7424
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_08
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7424
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_09
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7424
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7408
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7408
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7408
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7392
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7392
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7392
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7376
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7376
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass04_19
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Orange_00
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7424
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Orange_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7424
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemontile_0
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7424
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Peach_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7408
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Peach_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7408
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Peach_03
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7408
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Peach_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7408
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Yellow_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7392
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Yellow_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7392
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Yellow_03
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7392
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Yellow_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7392
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Blue_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7376
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Blue_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7376
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Blue_03
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7376
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Blue_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7376
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Purple_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Purple_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Purple_03
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Purple_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Red_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7344
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Red_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7344
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Red_03
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7344
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Red_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7344
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Grey_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7328
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Grey_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7329
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Grey_03
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7329
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Flower_Grey_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7329
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cave_Door_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4768
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cave_Door_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4768
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cave_Door_02
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4720
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cave_Door_03
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4720
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cave_Door_04
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4672
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cave_Door_05
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4672
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cave_Door_06
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 4694
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff00_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6464
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff00_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 6512
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff00_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 6464
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff00_03
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 6528
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff00_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 6512
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff00_05
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 6496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff00_06
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 6480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6384
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 6416
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 6368
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_03
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 6416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 6384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sign00_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4432
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sign00_01
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 4432
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sign01_00
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sign01_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sign02_00
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 4400
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sign03_00
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4368
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sign03_01
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 4368
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_06
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 5648
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_07
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 6428
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff01_08
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 6436
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff_Water_00
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 5632
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff_Water_02
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 5632
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff_Water_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 5632
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Water00
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7104
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Entrance0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 5344
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_00
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 4128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_03
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_04
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_05
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 4112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_06
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4096
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_07
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4096
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_08
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 4096
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_09
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4080
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_10
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 4080
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Grass05_12
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 4144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cliff05_10
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 6450
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fence00_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2768
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fence00_01
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 2736
+        width: 8
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fence01_00
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 2690
+        width: 7
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fence01_02
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 2674
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2944
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 2944
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 2944
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_03
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2928
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_04
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 2928
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_05
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 2928
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2912
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_07
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 2912
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile00_08
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 2912
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pillar00_01
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2608
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pokemontile_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 2576
+        width: 12
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pillar00_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 2640
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pillar00_03
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 2640
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pillar00_04
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 2640
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3024
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 3024
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 3024
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_03
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_04
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 3008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_05
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 3008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_07
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 2992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tile01_08
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 2992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Stair00_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5397
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Stair00_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 5397
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Stair00_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 5397
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

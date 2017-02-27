@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LoadManager : MonoBehaviour {
 	public int loadStatus; 
-	public GameObject message; 
+	public GameObject message, yesButton, noButton; 
 	Text messageTxt;
 	bool deleteFile;
 
@@ -39,22 +40,30 @@ public class LoadManager : MonoBehaviour {
 		if (loadStatus == 1) {
 			message.SetActive (true);
 			messageTxt.text = "Are you sure you want to delete current game file?";
+			yesButton.SetActive (true);
+			noButton.SetActive (true);
 			if (deleteFile) {
 				loadStatus = 0;
+				SceneManager.LoadScene (2);
 			} else {
 				loadStatus = 1;
 			}
 		} else {
 			message.SetActive (true);
 			messageTxt.text = "Creating New Game..."; 
+			SceneManager.LoadScene (2);
 		}
 	}
 
 	public void YesButton(){
 		deleteFile = true;
+		yesButton.SetActive (false);
+		noButton.SetActive (false);
 	}
 
 	public void NoButton(){
 		deleteFile = false;
+		yesButton.SetActive (false);
+		noButton.SetActive (false);
 	}
 }

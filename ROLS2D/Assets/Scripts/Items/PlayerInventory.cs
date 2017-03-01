@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// NOTE: 3/1/17 Individual list types need to be created 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -12,11 +14,8 @@ public class PlayerInventory : MonoBehaviour {
 	private List<BaseItem> playerInventory = new List<BaseItem>();
 	public TextAsset inventoryText;
 
-	// Needs to awake after the ItemDatabase
-	void Awake () 
-	{	
-
-	}
+	private int money;
+	private const int MAX_MONEY = 100000;
 
 
 	void Start()
@@ -29,8 +28,13 @@ public class PlayerInventory : MonoBehaviour {
 			Debug.Log("Cannot find item database object in player inventory start.");
 		if (itemDatabase == null)
 			Debug.Log("Cannot find item database component in player inventory start.");
+
+		// Load items from xml into inventory
 		LoadInvetory();
 	}
+
+
+	// ITEM FUNCTIONS
 
 	// Add to or increase inventory count
 	public void AddItem(string name, int count)
@@ -45,19 +49,19 @@ public class PlayerInventory : MonoBehaviour {
 			}
 		}
 
+		// Copy item from database and set count
 		BaseItem tempItem = new BaseItem();
 
-		// Copy item from database and set count
 		if (itemDatabase != null)
 		{
-			tempItem = itemDatabase.CopyItem(name);
+			tempItem = itemDatabase.GetItem(name);
 		}
 
 		tempItem.Count = count;
 		playerInventory.Add(tempItem);
 	}
 
-	// Decrease nameed item in invenotry by count
+	// Decrease item in invenotry by count
 	public void SubtractItem(string name, int count)
 	{
 		int i = 0;
@@ -69,11 +73,33 @@ public class PlayerInventory : MonoBehaviour {
 				break;
 			}
 		}
-		if (playerInventory[i].Count <= 0)
+		if (i<playerInventory.Count)	// Make sure item exists
 		{
-			playerInventory.Remove(playerInventory[i]);
+			if (playerInventory[i].Count <= 0)
+			{
+				playerInventory.Remove(playerInventory[i]);
+			}
 		}
+	}
 
+
+	// MONEY FUNCTIONS
+
+	// Increase money by amount
+	public void AddMoney(int amount)
+	{
+		// Add a check for max amount
+		money += amount;
+		if (money > MAX_MONEY)
+			money = MAX_MONEY;
+	}
+
+	// Decrease money by amount
+	public void SubtractMoney(int amount)
+	{
+		money -= amount;
+		if (money < 0)
+			money = 0;
 	}
 
 
@@ -107,7 +133,7 @@ public class PlayerInventory : MonoBehaviour {
 			// Copy item from database and set count
 			if (itemDatabase != null)
 			{
-				tempItem = itemDatabase.CopyItem(tempName);
+				tempItem = itemDatabase.GetItem(tempName);
 			}
 
 			tempItem.Count = int.Parse(tempCount);
@@ -117,6 +143,7 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 
+	// For debugging
 	public void PrintInventory()
 	{	
 		Debug.Log("Printing player inventory:");

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BaseItem {
 
-	public enum ItemType {WEAPON, ARMOR, POTION, QUEST};
-	string itemName;
-	string itemDescription;
-	int itemID;
-	int itemCount;
-	ItemType itemType;
+	public enum ItemType {WEAPON, ARMOR, POTION, QUEST, DEFAULT};
+	protected string itemName;
+	protected string itemDescription;
+	protected int itemID;
+	protected int itemCount;
+	protected ItemType itemType;
 
 	// Constructor for Item Database
 	public BaseItem(Dictionary<string, string> dictionary)
@@ -22,7 +22,7 @@ public class BaseItem {
 		itemType = (ItemType)System.Enum.Parse(typeof(BaseItem.ItemType), dictionary["ItemType"].ToString());
 	}
 
-	// Constructor for player inventory
+	// Default constructor
 	public BaseItem()
 	{
 		// Set default values
@@ -30,9 +30,10 @@ public class BaseItem {
 		itemID = 0;
 		itemCount = 1;
 		itemDescription = "";
-		itemType = ItemType.WEAPON;
+		itemType = ItemType.DEFAULT;
 	}
 
+	// Copy constructor
 	public BaseItem(BaseItem item)
 	{
 		// Set default values

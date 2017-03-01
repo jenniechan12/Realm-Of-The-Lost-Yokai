@@ -1,0 +1,16 @@
+﻿<root>
+<Item>
+	<ItemName>TestItem</ItemName>
+	<ItemID>1</ItemID>
+	<ItemDescription>This item would be cooler if cared less about what the other items thought of it.</ItemDescription>
+	<ItemType>WEAPON</ItemType>
+	<ItemCount>1</ItemCount>
+</Item>
+<Item>
+	<ItemName>TestItem2</ItemName>
+	<ItemID>2</ItemID>
+	<ItemDescription>I think, therefore I am an item.</ItemDescription>
+	<ItemType>ARMOR</ItemType>
+	<ItemCount>1</ItemCount>
+</Item>
+</root>

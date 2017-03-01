@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// NOTE: 3/1/17 Individual list types need to be created 
+// In ReadItems() figure out type of item and add to appropriate list
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -15,12 +18,12 @@ public class ItemDatabase : MonoBehaviour
 
 	void Awake()
 	{
+		// Read items from xml
 		ReadItems();
-		for (int i = 0; i < itemDictionaryList.Count; i++)
-		{
-			itemList.Add(new BaseItem(itemDictionaryList[i]));
-		}
+		// Store items in item lists
+		StoreItems();
 	}
+
 
 	// Read items from XML database
 	public void ReadItems()
@@ -44,8 +47,18 @@ public class ItemDatabase : MonoBehaviour
 		}
 	}
 
+	void StoreItems()
+	{
+		// Add items to itemList database
+		for (int i = 0; i < itemDictionaryList.Count; i++)
+		{
+			itemList.Add(new BaseItem(itemDictionaryList[i]));
+		}
+	}
+
+
 	// Return a copy of the database item
-	public BaseItem CopyItem (string name)
+	public BaseItem GetItem (string name)
 	{
 		for (int i = 0; i < itemList.Count; i++)
 		{
@@ -55,6 +68,8 @@ public class ItemDatabase : MonoBehaviour
 		return null;
 	}
 
+
+	// For debugging
 	public void PrintItems()
 	{
 		foreach (BaseItem item in itemList)

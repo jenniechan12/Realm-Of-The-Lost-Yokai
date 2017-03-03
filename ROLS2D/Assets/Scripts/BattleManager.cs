@@ -69,8 +69,6 @@ public class BattleManager : MonoBehaviour {
 	public void FleeClick()
 	{
 		Debug.Log("Flee selected.");
-		if (inventory)
-			inventory.Hide();
 
 	}
 
@@ -79,14 +77,15 @@ public class BattleManager : MonoBehaviour {
 		// DEBUGGING print inventory
 		if (inventory)
 		{
+			HideButtons();
 			inventory.Display();
 		}
 	}
 
 	public void TalkClick()
 	{
-		Debug.Log("Dialogue selected.");
-
+		Debug.Log("Talk selected.");
+		inventory.AddItem("TestPotion4", 1);
 	}
 
 	public void HideButtons()

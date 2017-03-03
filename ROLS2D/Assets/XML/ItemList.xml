@@ -27,4 +27,34 @@
 		<ItemEffect>5</ItemEffect>
 		<ItemCount>1</ItemCount>
 	</Item>
+	<Item>
+		<ItemName>TestPotion2</ItemName>
+		<ItemID>2</ItemID>
+		<ItemDescription>Im tired of these potions on these planes..</ItemDescription>
+		<ItemType>POTION</ItemType>
+		<ItemPrefab>TestItem1</ItemPrefab>
+		<ItemStat>STRENGTH</ItemStat>
+		<ItemEffect>5</ItemEffect>
+		<ItemCount>1</ItemCount>
+	</Item>
+	<Item>
+		<ItemName>TestPotion3</ItemName>
+		<ItemID>2</ItemID>
+		<ItemDescription>Im tired of these potions on these planes..</ItemDescription>
+		<ItemType>POTION</ItemType>
+		<ItemPrefab>TestItem1</ItemPrefab>
+		<ItemStat>STRENGTH</ItemStat>
+		<ItemEffect>5</ItemEffect>
+		<ItemCount>1</ItemCount>
+	</Item>
+	<Item>
+		<ItemName>TestPotion4</ItemName>
+		<ItemID>2</ItemID>
+		<ItemDescription>Im tired of these potions on these planes..</ItemDescription>
+		<ItemType>POTION</ItemType>
+		<ItemPrefab>TestItem1</ItemPrefab>
+		<ItemStat>STRENGTH</ItemStat>
+		<ItemEffect>5</ItemEffect>
+		<ItemCount>1</ItemCount>
+	</Item>
 </root>

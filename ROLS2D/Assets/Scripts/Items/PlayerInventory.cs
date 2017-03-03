@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// There are two lists, a list of weapon objects (player___Items) for storing information 
+// and a list of the menu gameobjects (activeObjects). 
+// They are linked by name. playerWeaponItem.Prefab == activeObject.name
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -13,12 +17,21 @@ public class PlayerInventory : MonoBehaviour
 	private List<GameObject> activeObjects = new List<GameObject>();
 	private List<Vector3> menuLocations = new List<Vector3>();
 
+	private GameObject selectedItem;
+
 	private List<WeaponItem> playerWeaponItems = new List<WeaponItem> ();
 	private List<ArmorItem> playerArmorItems = new List<ArmorItem> ();
 	private List<PotionItem> playerPotionItems = new List<PotionItem> ();
 	private List<StoryItem> playerStoryItems = new List<StoryItem> ();
 
 	public TextAsset inventoryText;
+
+	// Buttons
+	private GameObject exitButton;
+	private GameObject cancelItemButton;
+	private GameObject equipItemButton;
+	private GameObject useItemButton;
+	private GameObject giveItemButton;
 
 	private int money;
 	private const int MAX_MONEY = 100000;
@@ -44,6 +57,26 @@ public class PlayerInventory : MonoBehaviour
 			Debug.Log ("Cannot find item database object in player inventory start.");
 		if (itemDatabase == null)
 			Debug.Log ("Cannot find item database component in player inventory start.");
+
+		exitButton = GameObject.Find("ExitButton");
+		if (exitButton)
+			exitButton.SetActive(false);
+
+		cancelItemButton = GameObject.Find("CancelItemButton");
+		if (cancelItemButton)
+			cancelItemButton.SetActive(false);
+
+		useItemButton = GameObject.Find("UseItemButton");
+		if (useItemButton)
+			useItemButton.SetActive(false);
+
+		equipItemButton = GameObject.Find("EquipItemButton");
+		if (equipItemButton)
+				equipItemButton.SetActive(false);
+
+		giveItemButton = GameObject.Find("GiveItemButton");
+		if (giveItemButton)
+			giveItemButton.SetActive(false);
 
 		// Load items from xml into inventory
 		LoadInvetory();
@@ -95,36 +128,52 @@ public class PlayerInventory : MonoBehaviour
 			switch (tempDict ["ItemType"]) 
 			{
 				case "WEAPON":
+					// Add to inventory
 					WeaponItem tempWeapon = new WeaponItem (tempDict);
 					tempWeapon.Count = count;
 					playerWeaponItems.Add (tempWeapon);
+					// Add to menu active Object list
 					ITEM = Resources.Load("Prefab/" + tempWeapon.Prefab) as GameObject;
 					tempItem = Instantiate(ITEM, Vector3.zero, Quaternion.identity) as GameObject;
 					activeObjects.Add(tempItem);
+					tempItem.name = tempWeapon.Prefab;
+					tempItem.SetActive(false);
 					break;
 				case "ARMOR":
+					// Add to inventory
 					ArmorItem tempArmor = new ArmorItem (tempDict);
 					tempArmor.Count = count;
 					playerArmorItems.Add (tempArmor);
+					// Add to menu active Object list
 					ITEM = Resources.Load("Prefab/" + tempArmor.Prefab) as GameObject;
 					tempItem = Instantiate(ITEM, Vector3.zero, Quaternion.identity) as GameObject;
 					activeObjects.Add(tempItem);
+					tempItem.name = tempArmor.Prefab;
+					tempItem.SetActive(false);
 					break;
 				case "POTION":
+					// Add to inventory
 					PotionItem tempPotion = new PotionItem (tempDict);
 					tempPotion.Count = count;
 					playerPotionItems.Add (tempPotion);
+					// Add to menu active Object list
 					ITEM = Resources.Load("Prefab/" + tempPotion.Prefab) as GameObject;
 					tempItem = Instantiate(ITEM, Vector3.zero, Quaternion.identity) as GameObject;
 					activeObjects.Add(tempItem);
+					tempItem.name = tempPotion.Prefab;
+					tempItem.SetActive(false);
 					break;
 				case "STORY":
+					// Add to inventory
 					StoryItem tempStory = new StoryItem (tempDict);
 					tempStory.Count = count;
 					playerStoryItems.Add (tempStory);
+					// Add to menu active Object list
 					ITEM = Resources.Load("Prefab/" + tempStory.Prefab) as GameObject;
 					tempItem = Instantiate(ITEM, Vector3.zero, Quaternion.identity) as GameObject;
 					activeObjects.Add(tempItem);
+					tempItem.name = tempStory.Prefab;
+					tempItem.SetActive(false);
 					break;
 			}
 			UpdateDisplay();
@@ -169,29 +218,37 @@ public class PlayerInventory : MonoBehaviour
 		{	// Make sure item exists
 			if (playerWeaponItems [i].Count <= 0) 
 			{
-				playerWeaponItems.Remove (playerWeaponItems [i]);
 				for (int k = 0; k < activeObjects.Count; k++)
 				{
 					if (playerWeaponItems[i].Prefab == activeObjects[k].name)
 					{
+						GameObject tempObj = activeObjects[k];
 						activeObjects.Remove(activeObjects[k]);
+						Destroy(tempObj);
+						UpdateDisplay();
+						break;
 					}
 				}
+				playerWeaponItems.Remove (playerWeaponItems [i]);
+				return;
 			}
-			return;
 		}
 		if (i < playerArmorItems.Count) 
 		{	// Make sure item exists
 			if (playerArmorItems [i].Count <= 0) 
 			{
-				playerArmorItems.Remove (playerArmorItems [i]);
 				for (int k = 0; k < activeObjects.Count; k++)
 				{
-					if (playerWeaponItems[i].Prefab == activeObjects[k].name)
+					if (playerArmorItems[i].Prefab == activeObjects[k].name)
 					{
+						GameObject tempObj = activeObjects[k];
 						activeObjects.Remove(activeObjects[k]);
+						Destroy(tempObj);
+						UpdateDisplay();
+						break;
 					}
 				}
+				playerArmorItems.Remove (playerArmorItems [i]);
 				return;
 			}
 		}
@@ -199,14 +256,18 @@ public class PlayerInventory : MonoBehaviour
 		{	// Make sure item exists
 			if (playerPotionItems [i].Count <= 0) 
 			{
-				playerPotionItems.Remove (playerPotionItems [i]);
 				for (int k = 0; k < activeObjects.Count; k++)
 				{
-					if (playerWeaponItems[i].Prefab == activeObjects[k].name)
+					if (playerPotionItems[i].Prefab == activeObjects[k].name)
 					{
+						GameObject tempObj = activeObjects[k];
 						activeObjects.Remove(activeObjects[k]);
+						Destroy(tempObj);
+						UpdateDisplay();
+						break;
 					}
 				}
+				playerPotionItems.Remove (playerPotionItems [i]);
 				return;
 			}
 		}
@@ -214,14 +275,18 @@ public class PlayerInventory : MonoBehaviour
 		{	// Make sure item exists
 			if (playerStoryItems [i].Count <= 0) 
 			{
-				playerStoryItems.Remove (playerStoryItems [i]);
 				for (int k = 0; k < activeObjects.Count; k++)
 				{
-					if (playerWeaponItems[i].Prefab == activeObjects[k].name)
+					if (playerStoryItems[i].Prefab == activeObjects[k].name)
 					{
+						GameObject tempObj = activeObjects[k];
 						activeObjects.Remove(activeObjects[k]);
+						Destroy(tempObj);
+						UpdateDisplay();
+						break;
 					}
 				}
+				playerStoryItems.Remove (playerStoryItems [i]);
 				return;
 			}
 		}
@@ -307,6 +372,9 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
+	//************************************************************
+	// DISPLAY FUNCTIONS
+	//************************************************************
 
 	// For debugging
 	public void PrintInventory ()
@@ -394,6 +462,7 @@ public class PlayerInventory : MonoBehaviour
 
 		for (int i = 0; i < MAX_ITEMS; i++)
 		{
+			columnCounter++;
 			x += offset;
 
 			Vector3 tempTransform = new Vector3(x, y);
@@ -403,7 +472,7 @@ public class PlayerInventory : MonoBehaviour
 			{
 				columnCounter = 0;
 				x = topLeft.x;
-				y += offset;
+				y -= offset;
 			}
 		}
 	}
@@ -426,6 +495,7 @@ public class PlayerInventory : MonoBehaviour
 		{
 			item.SetActive(true);
 		}
+		exitButton.SetActive(true);
 	}
 
 	public void Hide()
@@ -435,7 +505,12 @@ public class PlayerInventory : MonoBehaviour
 		{
 			item.SetActive(false);
 		}
+		exitButton.SetActive(false);
 	}
+
+	//************************************************************
+	// RETRIEVAL FUNCTIONS
+	//************************************************************
 
 	bool Displaying
 	{
@@ -447,5 +522,104 @@ public class PlayerInventory : MonoBehaviour
 	{
 		get {return battling;}
 		set {battling = value;}
+	}
+
+
+	//************************************************************
+	// BUTTON FUNCTIONS
+	//************************************************************
+
+	public void ExitClick()
+	{
+		Hide();
+		if (battling)
+		{
+			BattleManager battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+			if (battleManager)
+				battleManager.UnhideButtons();
+		}
+		
+	}
+
+	public void UseItemClick()
+	{
+		// Call effect of selected item
+	}
+
+	public void EquipItemClick()
+	{
+		// Change equipment
+	}
+
+	public void CancelItemClick()
+	{
+		UnselectItem();
+	}
+
+	public void GiveItemClick()
+	{
+	}
+
+
+	public void SelectItem(GameObject selectItem)
+	{
+		selectedItem = selectItem;
+
+		foreach (WeaponItem item in playerWeaponItems) 
+		{
+			if (item.Prefab == selectedItem.name)
+			{
+				if (!battling)
+				{
+					equipItemButton.SetActive(true);
+					cancelItemButton.SetActive(true);
+					return;
+				}
+			}
+		}
+		foreach (ArmorItem item in playerArmorItems) 
+		{
+			if (item.Prefab == selectedItem.name)
+			{
+				if (!battling)
+				{
+					equipItemButton.SetActive(true);
+					cancelItemButton.SetActive(true);
+					return;
+				}
+			}
+		}
+		foreach (PotionItem item in playerPotionItems) 
+		{
+			if (item.Prefab == selectedItem.name)
+			{
+				useItemButton.SetActive(true);
+				giveItemButton.SetActive(true);
+				cancelItemButton.SetActive(true);
+				return;
+			}
+		}
+		foreach (StoryItem item in playerStoryItems) 
+		{
+			if (item.Prefab == selectedItem.name)
+			{
+				useItemButton.SetActive(true);
+				giveItemButton.SetActive(true);
+				cancelItemButton.SetActive(true);
+				return;
+			}
+		}
+
+	}
+
+	public void UnselectItem()
+	{
+		if (selectedItem)
+			selectedItem = null;
+
+		equipItemButton.SetActive(false);
+		giveItemButton.SetActive(false);
+		cancelItemButton.SetActive(false);
+		useItemButton.SetActive(false);
 	}
 }

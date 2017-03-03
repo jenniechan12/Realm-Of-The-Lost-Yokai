@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class BaseItem {
 
-	public enum ItemType {WEAPON, ARMOR, POTION, QUEST, DEFAULT};
+	public enum ItemType {WEAPON, ARMOR, POTION, STORY, DEFAULT};
 	protected string itemName;
 	protected string itemDescription;
 	protected int itemID;
 	protected int itemCount;
 	protected ItemType itemType;
+	protected string itemPrefab;	// Name of item prefab
 
 	// Constructor for Item Database
 	public BaseItem(Dictionary<string, string> dictionary)
@@ -20,6 +21,7 @@ public class BaseItem {
 		itemCount = int.Parse(dictionary["ItemCount"]);
 		itemDescription = dictionary["ItemDescription"];
 		itemType = (ItemType)System.Enum.Parse(typeof(BaseItem.ItemType), dictionary["ItemType"].ToString());
+		itemPrefab = dictionary["ItemPrefab"];
 	}
 
 	// Default constructor
@@ -73,5 +75,11 @@ public class BaseItem {
 	{
 		get {return itemType;}
 		set {itemType = value;}
+	}
+
+	public string Prefab
+	{
+		get {return itemPrefab;}
+		set {itemPrefab = value;}
 	}
 }

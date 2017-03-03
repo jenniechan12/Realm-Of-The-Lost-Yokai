@@ -6,8 +6,9 @@ public class WeaponItem : BaseItem{
 
 	private int strength;
 
-	public WeaponItem(Dictionary<string, string> dictionary)
+	public WeaponItem(Dictionary<string, string> dictionary) : base(dictionary)
 	{	
+
 		strength = int.Parse(dictionary["ItemStrength"]);
 	}
 

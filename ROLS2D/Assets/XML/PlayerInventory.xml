@@ -1,10 +1,14 @@
 ﻿<root>
-<Item>
-	<ItemName>TestItem</ItemName>
-	<ItemCount>5</ItemCount>
-</Item>
-<Item>
-	<ItemName>TestItem2</ItemName>
-	<ItemCount>9</ItemCount>
-</Item>
+	<Item>
+		<ItemName>TestItem</ItemName>
+		<ItemCount>5</ItemCount>
+	</Item>
+	<Item>
+		<ItemName>TestItem2</ItemName>
+		<ItemCount>9</ItemCount>
+	</Item>
+	<Item>
+		<ItemName>TestPotion1</ItemName>
+		<ItemCount>2</ItemCount>
+	</Item>
 </root>

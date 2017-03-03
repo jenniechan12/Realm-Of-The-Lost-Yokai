@@ -12,6 +12,8 @@ public class BattleManager : MonoBehaviour {
 	GameObject fleeButton;
 	GameObject talkButton;
 	GameObject itemButton;
+
+	private PlayerInventory inventory;
 	
 	// Use this for initialization
 	void Start () 
@@ -34,6 +36,21 @@ public class BattleManager : MonoBehaviour {
 			Debug.Log("Cannot find flee button object in BattleManager.");
 		if (itemButton == null)
 			Debug.Log("Cannot find item button object in BattleManager.");
+
+		inventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
+		if (inventory == null)
+			Debug.Log("Cannot find player inventory in BattleManager start.");
+
+		// Tell the inventory that we are in battle
+		if (inventory)
+			inventory.Battling = true;
+	}
+
+	void OnDestroy()
+	{	
+		// Tell the inventory that we are no longer in battle
+		if (inventory)
+			inventory.Battling = false;
 	}
 	
 	// Update is called once per frame
@@ -51,37 +68,25 @@ public class BattleManager : MonoBehaviour {
 
 	public void FleeClick()
 	{
-		Debug.Log("Removing TestItem to inventory.");
-		PlayerInventory inventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
+		Debug.Log("Flee selected.");
 		if (inventory)
-		{
-			inventory.SubtractItem("TestItem", 3);
-		}
+			inventory.Hide();
+
 	}
 
 	public void ItemClick()
 	{
-		// DEBUGGING print inventories
-		ItemDatabase items = GameObject.Find("ItemDatabase").GetComponent<ItemDatabase>();
-		if (items)
-		{
-			items.PrintItems();
-		}
-		PlayerInventory inventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
+		// DEBUGGING print inventory
 		if (inventory)
 		{
-			inventory.PrintInventory();
+			inventory.Display();
 		}
 	}
 
 	public void TalkClick()
 	{
-		Debug.Log("Adding TestItem to inventory.");
-		PlayerInventory inventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
-		if (inventory)
-		{
-			inventory.AddItem("TestItem", 3);
-		}
+		Debug.Log("Dialogue selected.");
+
 	}
 
 	public void HideButtons()

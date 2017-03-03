@@ -1,0 +1,10 @@
+﻿<root>
+<Item>
+	<ItemName>TestItem</ItemName>
+	<ItemCount>5</ItemCount>
+</Item>
+<Item>
+	<ItemName>TestItem2</ItemName>
+	<ItemCount>9</ItemCount>
+</Item>
+</root>

@@ -1,0 +1,66 @@
+﻿<root>
+<Class>
+	<ClassName>Dragon Warrior</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>2</Vitality>
+	<Strength>5</Strength>
+	<Defense>3</Defense>
+	<Luck>1</Luck>
+</Class>
+<Class>
+	<ClassName>MMA Fighter</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>3</Vitality>
+	<Strength>5</Strength>
+	<Defense>2</Defense>
+	<Luck>1</Luck>
+</Class>
+<Class>
+	<ClassName>Tanker</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>4</Vitality>
+	<Strength>1</Strength>
+	<Defense>5</Defense>
+	<Luck>1</Luck>
+</Class>
+<Class>
+	<ClassName>Aikido Practitioner</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>2</Vitality>
+	<Strength>2</Strength>
+	<Defense>5</Defense>
+	<Luck>2</Luck>
+</Class>
+<Class>
+	<ClassName>Monk</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>5</Vitality>
+	<Strength>2</Strength>
+	<Defense>1</Defense>
+	<Luck>3</Luck>
+</Class>
+<Class>
+	<ClassName>Fortune Teller</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>5</Vitality>
+	<Strength>3</Strength>
+	<Defense>1</Defense>
+	<Luck>2</Luck>
+</Class>
+<Class>
+	<ClassName>Hustler</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>2</Vitality>
+	<Strength>2</Strength>
+	<Defense>2</Defense>
+	<Luck>5</Luck>
+</Class>
+<Class>
+	<ClassName>Gambler</ClassName>
+	<ClassDescription></ClassDescription>
+	<Vitality>1</Vitality>
+	<Strength>4</Strength>
+	<Defense>1</Defense>
+	<Luck>5</Luck>
+</Class>
+</root>

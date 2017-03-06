@@ -9,27 +9,28 @@ public class CharacterSelection : MonoBehaviour {
 	public Image currentCharacter;
 
 	// List of Classes
-	private BaseCharacterClass class1 = new BaseMaleAttacker(); 
-	private BaseCharacterClass class2 = new BaseFemaleAttacker();
-	private BaseCharacterClass class3 = new BaseMaleHeal(); 
-	private BaseCharacterClass class4 = new BaseFemaleHeal();
-	private BaseCharacterClass class5 = new BaseMaleThief(); 
-	private BaseCharacterClass class6 = new BaseFemaleThief();
-	private BaseCharacterClass class7 = new BaseMaleLuck(); 
-	private BaseCharacterClass class8 = new BaseFemaleLuck();
-	 
-	private BaseCharacterClass[] characterClasses;
-	private BaseCharacterClass currentClass; 
+	private GameObject classDatabaseObj; 
+	private ClassDatabase classDatabase; 
 
+	private BaseCharacterClass currentClass; 
+	public BaseCharacterClass selectClass;
 
 	int currentIndex = 0;
+
 	// Use this for initialization
 	void Start () {
-		characterClasses = new BaseCharacterClass[8]{
-			class1, class2, class3, class4, class5, class6, class7, class8
-		};
+		
+		// References to objects and componenets 	
+		classDatabaseObj = GameObject.Find("CharacterClassManager");
+		if (classDatabaseObj)
+			classDatabase = classDatabaseObj.GetComponent<ClassDatabase> ();
+		if (classDatabaseObj == null)
+			Debug.Log ("Cannot find class database object in character selection scene");
+		if (classDatabase == null) {
+			Debug.Log ("Cannot find class database component in character selection scene");
+		}
 
-		currentClass = characterClasses [currentIndex];
+		currentClass = classDatabase.GetClass(currentIndex);
 		DisplayStat ();
 	}
 	
@@ -38,7 +39,7 @@ public class CharacterSelection : MonoBehaviour {
 		
 	}
 
-	// Display Characters
+	// Left Button Function - Display Previous Character
 	public void LeftButton(){
 		currentIndex--;
 
@@ -48,10 +49,11 @@ public class CharacterSelection : MonoBehaviour {
 		}
 
 		currentCharacter.overrideSprite = characterSprites [currentIndex];
-		currentClass = characterClasses [currentIndex];
+		currentClass = classDatabase.GetClass(currentIndex);		
 		DisplayStat ();
 	}
 
+	// Right Button Function - Display Next Character
 	public void RightButton(){
 		currentIndex++;
 
@@ -61,14 +63,20 @@ public class CharacterSelection : MonoBehaviour {
 		}
 
 		currentCharacter.overrideSprite = characterSprites [currentIndex];
-		currentClass = characterClasses [currentIndex];
+		currentClass = classDatabase.GetClass(currentIndex);
 		DisplayStat ();
+	}
+
+	// Confirm Button Function - Confirm Player's Character Selection
+	public void SelectCharacter(){
+		selectClass = currentClass;
+		Debug.Log (currentClass.ClassName);
 	}
 
 	private void DisplayStat(){
 		attributes [0].localScale = new Vector3 (currentClass.Vitality, 1, 1);
 		attributes [1].localScale = new Vector3 (currentClass.Strength, 1, 1);
-		attributes [2].localScale = new Vector3 (currentClass.Agility, 1, 1); 
+		attributes [2].localScale = new Vector3 (currentClass.Defense, 1, 1); 
 		attributes [3].localScale = new Vector3 (currentClass.Luck, 1, 1);
 	}
 }

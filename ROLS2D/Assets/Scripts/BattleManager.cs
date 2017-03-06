@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour {
@@ -22,20 +23,7 @@ public class BattleManager : MonoBehaviour {
 		if (MINIGAMETESTRESOURCE == null)
 			Debug.Log("Error loading minigame test resource in battlemanager");
 
-		// Find buttons
-		fightButton = GameObject.Find("FightButton");
-		fleeButton = GameObject.Find("FleeButton");
-		talkButton = GameObject.Find("ItemButton");
-		itemButton = GameObject.Find("TalkButton");
-
-		if (fightButton == null)
-			Debug.Log("Cannot find fight button object in BattleManager.");
-		if (talkButton == null)
-			Debug.Log("Cannot find talk button object in BattleManager.");
-		if (fleeButton == null)
-			Debug.Log("Cannot find flee button object in BattleManager.");
-		if (itemButton == null)
-			Debug.Log("Cannot find item button object in BattleManager.");
+		SetButtons();
 
 		inventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
 		if (inventory == null)
@@ -44,6 +32,29 @@ public class BattleManager : MonoBehaviour {
 		// Tell the inventory that we are in battle
 		if (inventory)
 			inventory.Battling = true;
+	}
+
+	void SetButtons()
+	{
+
+		// Find buttons
+		fightButton = GameObject.Find("FightButton");
+		fleeButton = GameObject.Find("FleeButton");
+		talkButton = GameObject.Find("TalkButton");
+		itemButton = GameObject.Find("ItemButton");
+
+		Button button;
+		button = fightButton.GetComponent<Button>();
+		button.onClick.AddListener(FightClick);
+
+		button = fleeButton.GetComponent<Button>();
+		button.onClick.AddListener(FleeClick);
+
+		button = itemButton.GetComponent<Button>();
+		button.onClick.AddListener(ItemClick);
+
+		button = talkButton.GetComponent<Button>();
+		button.onClick.AddListener(TalkClick);
 	}
 
 	void OnDestroy()

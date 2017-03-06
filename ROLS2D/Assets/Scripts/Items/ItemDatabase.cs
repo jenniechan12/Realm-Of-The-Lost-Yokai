@@ -9,7 +9,7 @@ using System.Xml;
 
 public class ItemDatabase : MonoBehaviour 
 {
-	public TextAsset itemInventory; // xml file set in unity inspector
+	private TextAsset ITEM_LIST_XML; // xml file set in unity inspector
 
 	private List<Dictionary<string, string>> itemDictionaryList = new List<Dictionary<string, string>>();
 	private Dictionary<string, string> itemDictionary;
@@ -18,6 +18,7 @@ public class ItemDatabase : MonoBehaviour
 	void Awake()
 	{
 		// Read items from xml
+		ITEM_LIST_XML = Resources.Load("XML/ItemList") as TextAsset;
 		ReadItems();
 	}
 
@@ -26,7 +27,7 @@ public class ItemDatabase : MonoBehaviour
 	public void ReadItems()
 	{
 		XmlDocument xmlDocument = new XmlDocument();
-		xmlDocument.LoadXml(itemInventory.text);
+		xmlDocument.LoadXml(ITEM_LIST_XML.text);
 		XmlNodeList itemNodeList = xmlDocument.GetElementsByTagName("Item");
 
 		// Grab item details and store in dictionary

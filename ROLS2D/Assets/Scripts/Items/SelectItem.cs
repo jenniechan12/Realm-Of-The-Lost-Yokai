@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSelect : MonoBehaviour {
+public class SelectItem : MonoBehaviour {
 
 	PlayerInventory playerInventory;
 
@@ -11,9 +11,8 @@ public class ItemSelect : MonoBehaviour {
 		playerInventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
 	}
 	
-	public void OnMouseDown()
+	void OnMouseDown()
 	{
-		if(playerInventory)
-			playerInventory.SelectItem(gameObject);
+		playerInventory.SelectItemClick(gameObject);
 	}
 }

@@ -1,4 +1,5 @@
 ﻿<root>
+
 	<Item>
 		<ItemName>TestItem</ItemName>
 		<ItemCount>5</ItemCount>
@@ -10,4 +11,5 @@
 	<EquipedWeapon>Empty</EquipedWeapon>
 	<EquipedArmor>Empty</EquipedArmor>
 	<EquipedBoots>Empty</EquipedBoots>
+
 </root>

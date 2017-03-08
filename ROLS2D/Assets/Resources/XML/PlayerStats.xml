@@ -1,0 +1,17 @@
+<root>
+  <Info>
+    <PlayerName>Genie</PlayerName>
+    <PlayerClass>Archer</PlayerClass>
+    <PlayerLevel>0</PlayerLevel>
+    <PlayerExperience>0</PlayerExperience>
+    <PlayerHP>0</PlayerHP>
+    <PlayerAP>0</PlayerAP>
+    <PlayerVitality>0</PlayerVitality>
+    <PlayerStrength>0</PlayerStrength>
+    <PlayerDefense>0</PlayerDefense>
+    <PlayerLuck>0</PlayerLuck>
+    <PlayerPosX>0</PlayerPosX>
+    <PlayerPosY>0</PlayerPosY>
+    <PlayerPosZ>0</PlayerPosZ>
+  </Info>
+</root>

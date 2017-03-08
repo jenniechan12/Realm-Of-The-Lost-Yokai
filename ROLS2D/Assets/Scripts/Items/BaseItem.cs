@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BaseItem {
 
-	public enum ItemType {WEAPON, ARMOR, POTION, QUEST, DEFAULT};
+	public enum ItemType {EQUIP, CONSUMABLE, STORY, GENERAL};
+	public enum ItemSubtype {WEAPON, ARMOR, BOOTS, POTION, FOOD, GENERAL, NA};
 	protected string itemName;
 	protected string itemDescription;
 	protected int itemID;
 	protected int itemCount;
 	protected ItemType itemType;
+	protected ItemSubtype itemSubtype;
+	protected string itemPrefab;	// Name of item prefab
 
 	// Constructor for Item Database
 	public BaseItem(Dictionary<string, string> dictionary)
@@ -20,6 +23,8 @@ public class BaseItem {
 		itemCount = int.Parse(dictionary["ItemCount"]);
 		itemDescription = dictionary["ItemDescription"];
 		itemType = (ItemType)System.Enum.Parse(typeof(BaseItem.ItemType), dictionary["ItemType"].ToString());
+		itemSubtype = (ItemSubtype)System.Enum.Parse(typeof(BaseItem.ItemSubtype), dictionary["ItemSubtype"].ToString());
+		itemPrefab = dictionary["ItemPrefab"];
 	}
 
 	// Default constructor
@@ -30,7 +35,7 @@ public class BaseItem {
 		itemID = 0;
 		itemCount = 1;
 		itemDescription = "";
-		itemType = ItemType.DEFAULT;
+		itemType = ItemType.GENERAL;
 	}
 
 	// Copy constructor
@@ -73,5 +78,17 @@ public class BaseItem {
 	{
 		get {return itemType;}
 		set {itemType = value;}
+	}
+
+	public ItemSubtype Subtype
+	{
+		get {return itemSubtype;}
+		set {itemSubtype = value;}
+	}
+
+	public string Prefab
+	{
+		get {return itemPrefab;}
+		set {itemPrefab = value;}
 	}
 }

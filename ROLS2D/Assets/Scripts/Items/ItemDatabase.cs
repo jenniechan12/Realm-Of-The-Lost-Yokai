@@ -9,8 +9,7 @@ using System.Xml;
 
 public class ItemDatabase : MonoBehaviour 
 {
-	public TextAsset itemInventory; // xml file set in unity inspector
-	public static List<BaseItem> itemList = new List<BaseItem>();
+	private TextAsset ITEM_LIST_XML; // xml file set in unity inspector
 
 	private List<Dictionary<string, string>> itemDictionaryList = new List<Dictionary<string, string>>();
 	private Dictionary<string, string> itemDictionary;
@@ -19,9 +18,8 @@ public class ItemDatabase : MonoBehaviour
 	void Awake()
 	{
 		// Read items from xml
+		ITEM_LIST_XML = Resources.Load("XML/ItemList") as TextAsset;
 		ReadItems();
-		// Store items in item lists
-		StoreItems();
 	}
 
 
@@ -29,7 +27,7 @@ public class ItemDatabase : MonoBehaviour
 	public void ReadItems()
 	{
 		XmlDocument xmlDocument = new XmlDocument();
-		xmlDocument.LoadXml(itemInventory.text);
+		xmlDocument.LoadXml(ITEM_LIST_XML.text);
 		XmlNodeList itemNodeList = xmlDocument.GetElementsByTagName("Item");
 
 		// Grab item details and store in dictionary
@@ -47,35 +45,18 @@ public class ItemDatabase : MonoBehaviour
 		}
 	}
 
-	void StoreItems()
+	// Return a dictionary of item
+	public Dictionary<string, string> GetItem (string name)
 	{
-		// Add items to itemList database
 		for (int i = 0; i < itemDictionaryList.Count; i++)
 		{
-			itemList.Add(new BaseItem(itemDictionaryList[i]));
+			Dictionary<string, string> tempDict = itemDictionaryList[i];
+			if (tempDict["ItemName"] == name)
+			{
+				return tempDict;
+			}
 		}
-	}
 
-
-	// Return a copy of the database item
-	public BaseItem GetItem (string name)
-	{
-		for (int i = 0; i < itemList.Count; i++)
-		{
-			if (itemList[i].Name == name)
-				return itemList[i];
-		}
 		return null;
-	}
-
-
-	// For debugging
-	public void PrintItems()
-	{
-		foreach (BaseItem item in itemList)
-		{
-			Debug.Log(item.Name);
-			Debug.Log(item.Count);
-		}
 	}
 }

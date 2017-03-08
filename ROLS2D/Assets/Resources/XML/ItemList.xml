@@ -1,16 +1,43 @@
-﻿<root>
-<Item>
-	<ItemName>TestItem</ItemName>
-	<ItemID>1</ItemID>
-	<ItemDescription>This item would be cooler if cared less about what the other items thought of it.</ItemDescription>
-	<ItemType>WEAPON</ItemType>
-	<ItemCount>1</ItemCount>
-</Item>
-<Item>
-	<ItemName>TestItem2</ItemName>
-	<ItemID>2</ItemID>
-	<ItemDescription>I think, therefore I am an item.</ItemDescription>
-	<ItemType>ARMOR</ItemType>
-	<ItemCount>1</ItemCount>
-</Item>
+<root>
+
+	<Item>
+		<ItemName>TestItem</ItemName>
+		<ItemID>1</ItemID>
+		<ItemDescription>This item would be cooler if cared less about what the other items thought of it.</ItemDescription>
+		<ItemType>EQUIP</ItemType>
+		<ItemSubtype>WEAPON</ItemSubtype>
+		<ItemStrength>5</ItemStrength>
+		<ItemDefense>0</ItemDefense>
+		<ItemVitality>0</ItemVitality>
+		<ItemLuck>0</ItemLuck>
+		<ItemPrefab>TestItem1</ItemPrefab>
+		<ItemCount>1</ItemCount>
+	</Item>
+	<Item>
+		<ItemName>TestItem2</ItemName>
+		<ItemID>2</ItemID>
+		<ItemDescription>Second test item.</ItemDescription>
+		<ItemType>EQUIP</ItemType>
+		<ItemSubtype>WEAPON</ItemSubtype>
+		<ItemStrength>0</ItemStrength>
+		<ItemDefense>3</ItemDefense>
+		<ItemVitality>0</ItemVitality>
+		<ItemLuck>0</ItemLuck>
+		<ItemPrefab>TestItem2</ItemPrefab>
+		<ItemCount>1</ItemCount>
+	</Item>
+	<Item>
+		<ItemName>Empty</ItemName>
+		<ItemID>3</ItemID>
+		<ItemDescription>Empty item.</ItemDescription>
+		<ItemType>EQUIP</ItemType>
+		<ItemSubtype>NA</ItemSubtype>
+		<ItemStrength>0</ItemStrength>
+		<ItemDefense>0</ItemDefense>
+		<ItemVitality>0</ItemVitality>
+		<ItemLuck>0</ItemLuck>
+		<ItemPrefab>Empty</ItemPrefab>
+		<ItemCount>0</ItemCount>
+	</Item>
+
 </root>

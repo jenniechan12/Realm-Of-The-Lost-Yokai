@@ -14,6 +14,7 @@ using System.Xml;
 public class PlayerInventory : MonoBehaviour
 {
 
+	private GameManager gameManager;
 	private GameObject itemDatabaseObj;
 	private ItemDatabase itemDatabase;
 	private EquipManager equipManager;
@@ -36,7 +37,8 @@ public class PlayerInventory : MonoBehaviour
 	private GameObject unequipItemButton;
 	private GameObject useItemButton;
 	private GameObject giveItemButton;
-	private GameObject openButton;
+	private GameObject selectItemBox;	// Box used to highlight item in UI
+
 	private Text itemNameUI;
 	private Text itemDescriptionUI;
 
@@ -45,21 +47,23 @@ public class PlayerInventory : MonoBehaviour
 
 	private const int MAX_ITEMS = 20;
 
-	bool battling;	// Are we displaying in a battle or from world?
+	// Our current state
 	bool displaying;
 
 	// *********************************************************
 	// AT START
 	// *********************************************************
+
 	void Awake()
 	{
-		battling = false;
 		displaying = false;
 		INVENTORY_XML = Resources.Load("XML/PlayerInventory") as TextAsset;
 	}
 
 	void Start ()
 	{
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
 		// References to objects and components
 		itemDatabaseObj = GameObject.Find ("ItemDatabase");
 		if (itemDatabaseObj)
@@ -86,6 +90,7 @@ public class PlayerInventory : MonoBehaviour
 		UpdateDisplay();
 	}
 
+
 	// Add functions for button clicks
 	void SetButtons()
 	{
@@ -95,7 +100,6 @@ public class PlayerInventory : MonoBehaviour
 		{
 			button = exitButton.GetComponent<Button>();
 			button.onClick.AddListener(ExitClick);
-			exitButton.SetActive(false);
 		}
 
 		cancelItemButton = GameObject.Find("CancelItemButton");
@@ -137,16 +141,9 @@ public class PlayerInventory : MonoBehaviour
 			button.onClick.AddListener(GiveItemClick);
 			giveItemButton.SetActive(false);
 		}
-		openButton = GameObject.Find("OpenButton");
-		if (openButton)
-		{
-			button = openButton.GetComponent<Button>();
-			button.onClick.AddListener(Display);
-			if (!battling)
-				openButton.SetActive(true);
-			else
-				openButton.SetActive(false);
-		}
+
+		selectItemBox = GameObject.Find("SelectItemBox");
+		selectItemBox.SetActive(false);
 	}
 
 
@@ -279,6 +276,7 @@ public class PlayerInventory : MonoBehaviour
 	//************************************************************
 	// ITEM FUNCTIONS
 	//************************************************************
+
 	// Add to or increase inventory count
 	public void AddItem (string name, int count)
 	{
@@ -458,6 +456,7 @@ public class PlayerInventory : MonoBehaviour
 			money = MAX_MONEY;
 	}
 
+
 	// Decrease money by amount
 	public void SubtractMoney (int amount)
 	{
@@ -468,7 +467,9 @@ public class PlayerInventory : MonoBehaviour
 
 
 	//************************************************************
+	//************************************************************
 	// DISPLAY FUNCTIONS
+	//************************************************************
 	//************************************************************
 
 	// For debugging
@@ -496,7 +497,6 @@ public class PlayerInventory : MonoBehaviour
 	}
 
 
-
 	// Reset all locations of sprites in menu display
 	// Call this after objects are removed or added to inventory
 	public void UpdateDisplay()
@@ -508,6 +508,7 @@ public class PlayerInventory : MonoBehaviour
 
 	}
 
+
 	// Show inventory UI and hide open button
 	public void Display()
 	{
@@ -516,23 +517,22 @@ public class PlayerInventory : MonoBehaviour
 		{
 			item.SetActive(true);
 		}
-		exitButton.SetActive(true);
-		openButton.SetActive(false);
+		if (exitButton)
+			exitButton.SetActive(true);
 	}
+
 
 	// Hide inventory UI and show open button
 	public void Hide()
 	{
-		if (!battling)
-			openButton.SetActive(true);
-
 		displaying = false;
 		UnselectItem();
 		foreach (GameObject item in activeObjects)
 		{
 			item.SetActive(false);
 		}
-		exitButton.SetActive(false);
+		if (exitButton)
+			exitButton.SetActive(false);
 	}
 
 
@@ -545,7 +545,7 @@ public class PlayerInventory : MonoBehaviour
 	public void ExitClick()
 	{
 		Hide();
-		if (battling)
+		if (gameManager.Battling())
 		{
 			BattleManager battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
 			if (battleManager)
@@ -554,10 +554,12 @@ public class PlayerInventory : MonoBehaviour
 		
 	}
 
+
 	public void UseItemClick()
 	{
 		// Call effect of selected item
 	}
+
 
 	// Equip the currently selected items, change buttons
 	public void EquipItemClick()
@@ -602,6 +604,7 @@ public class PlayerInventory : MonoBehaviour
 		UnselectItem();
 	}
 
+
 	public void GiveItemClick()
 	{
 	}
@@ -610,13 +613,20 @@ public class PlayerInventory : MonoBehaviour
 	// Player clicked an item in inventory, show selected item button options
 	public void SelectItemClick(GameObject selectItem)
 	{
-		selectedItem = selectItem;
+		// Unselect the first item
+		UnselectItem();
 
+		// Select the new item
+		selectedItem = selectItem;
+		selectItemBox.SetActive(true);
+
+		// Find the item in our item list and display options
 		foreach (EquipItem item in playerEquipItems) 
 		{
 			if (item.Prefab == selectedItem.name)
 			{
-				if (!battling)
+				selectItemBox.transform.position = selectedItem.transform.position;
+				if (!gameManager.Battling())
 				{
 					itemNameUI.text = item.Name;
 					itemDescriptionUI.text = item.Description;
@@ -635,7 +645,8 @@ public class PlayerInventory : MonoBehaviour
 		{
 			if (item.Prefab == selectedItem.name)
 			{
-				if (battling)
+				selectItemBox.transform.position = selectedItem.transform.position;
+				if (gameManager.Battling())
 				{
 					itemNameUI.text = item.Name;
 					itemDescriptionUI.text = item.Description;
@@ -656,6 +667,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 		foreach (StoryItem item in playerStoryItems) 
 		{
+			selectItemBox.transform.position = selectedItem.transform.position;
 			if (item.Prefab == selectedItem.name)
 			{
 				itemNameUI.text = item.Name;
@@ -668,6 +680,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 
 	}
+
 
 	// Item was unselected, turn off selected item buttons
 	public void UnselectItem()
@@ -683,7 +696,7 @@ public class PlayerInventory : MonoBehaviour
 		giveItemButton.SetActive(false);
 		cancelItemButton.SetActive(false);
 		useItemButton.SetActive(false);
-
+		selectItemBox.SetActive(false);
 	}
 
 
@@ -697,9 +710,4 @@ public class PlayerInventory : MonoBehaviour
 		set {displaying = value;}
 	}
 
-	public bool Battling
-	{
-		get {return battling;}
-		set {battling = value;}
-	}
 }

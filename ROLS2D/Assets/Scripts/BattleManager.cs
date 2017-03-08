@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour {
 
+	private GameManager gameManager;
+
 	// Minigame Resources
 	GameObject MINIGAMETESTRESOURCE;
 
@@ -19,6 +21,11 @@ public class BattleManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		// Tell the game manager we are in battle (will probably be removed)
+		gameManager.BattleTrigger();
+
+
 		MINIGAMETESTRESOURCE = Resources.Load("Prefab/MinigameTest") as GameObject;
 		if (MINIGAMETESTRESOURCE == null)
 			Debug.Log("Error loading minigame test resource in battlemanager");
@@ -30,8 +37,7 @@ public class BattleManager : MonoBehaviour {
 			Debug.Log("Cannot find player inventory in BattleManager start.");
 
 		// Tell the inventory that we are in battle
-		if (inventory)
-			inventory.Battling = true;
+
 	}
 
 	void SetButtons()
@@ -59,9 +65,8 @@ public class BattleManager : MonoBehaviour {
 
 	void OnDestroy()
 	{	
-		// Tell the inventory that we are no longer in battle
-		if (inventory)
-			inventory.Battling = false;
+		// Tell the game manager we are done battling
+		gameManager.BattleTrigger();
 	}
 	
 	// Update is called once per frame

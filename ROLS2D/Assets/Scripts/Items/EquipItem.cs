@@ -18,25 +18,25 @@ public class EquipItem : BaseItem {
 		vitality = int.Parse(dictionary["ItemVitality"]);
 	}
 
-	int Strength
+	public int Strength
 	{
 		get {return strength;}
 		set {strength = value;}
 	}
 
-	int Defense
+	public int Defense
 	{
 		get {return defense;}
 		set {defense = value;}
 	}
 
-	int Luck
+	public int Luck
 	{
 		get {return luck;}
 		set {luck = value;}
 	}
 
-	int Vitality
+	public int Vitality
 	{
 		get {return vitality;}
 		set {vitality = value;}

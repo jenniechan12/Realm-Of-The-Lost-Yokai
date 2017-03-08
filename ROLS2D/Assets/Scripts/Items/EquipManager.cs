@@ -12,6 +12,12 @@ public class EquipManager : MonoBehaviour {
 	private EquipItem boots;
 	private ItemDatabase itemDatabase;
 
+	private int strengthMod;
+	private int defenseMod;
+	private int vitalityMod;
+	private int luckMod;
+
+
 	void Awake()
 	{
 		INVENTORY_XML = Resources.Load("XML/PlayerInventory") as TextAsset;
@@ -24,6 +30,7 @@ public class EquipManager : MonoBehaviour {
 	void Start () {
 		itemDatabase = GameObject.Find("ItemDatabase").GetComponent<ItemDatabase>();
 		LoadEquipment();
+		UpdateStats();
 		Print();
 	}
 
@@ -54,6 +61,9 @@ public class EquipManager : MonoBehaviour {
 					break;
 			}
 		}
+
+		// Make sure our stat modifiers reflect the new equipment
+		UpdateStats();
 	}
 
 
@@ -79,6 +89,41 @@ public class EquipManager : MonoBehaviour {
 					boots = null;
 					break;
 			}
+		}
+
+		// Make sure we update the stat modifiers
+		UpdateStats();
+	}
+
+
+	// Update the stats struct to alter player stats
+	void UpdateStats()
+	{
+		strengthMod = 0;
+		defenseMod = 0;
+		vitalityMod = 0;
+		luckMod = 0;
+
+		if (weapon != null)
+		{
+			strengthMod += weapon.Strength;
+			defenseMod += weapon.Defense;
+			vitalityMod += weapon.Vitality;
+			luckMod += weapon.Luck;
+		}
+		if (armor != null)
+		{
+			strengthMod += armor.Strength;
+			defenseMod += armor.Defense;
+			vitalityMod += armor.Vitality;
+			luckMod += armor.Luck;
+		}
+		if (boots != null)
+		{
+			strengthMod += boots.Strength;
+			defenseMod += boots.Defense;
+			vitalityMod += boots.Vitality;
+			luckMod += boots.Luck;
 		}
 	}
 
@@ -200,6 +245,27 @@ public class EquipManager : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public int StrengthMod
+	{
+		get {return strengthMod;}
+		set {strengthMod = value;}
+	}
+	public int DefenseMod
+	{
+		get {return defenseMod;}
+		set {defenseMod = value;}
+	}
+	public int VitalityMod
+	{
+		get {return vitalityMod;}
+		set {vitalityMod = value;}
+	}
+	public int LuckMod
+	{
+		get {return luckMod;}
+		set {luckMod = value;}
 	}
 
 	// For debugging

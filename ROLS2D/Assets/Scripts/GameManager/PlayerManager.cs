@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using System.Xml;
 using System.Xml.Serialization;
@@ -30,6 +31,15 @@ public class PlayerManager : MonoBehaviour
 	private int MAX_EXP; 
 	private List<int> expList = new List<int> ();
 
+	// Attribute Points
+	public GameObject playerStatMenu;
+	public Text _vitAP, _strAP, _defAP, _luckAP;
+	private int _vitCount = 0; 
+	private int _strCount = 0;
+	private int _defCount = 0;
+	private int _luckCount = 0;
+
+
 	void Awake ()
 	{
 		// Check if instance is already exist
@@ -49,13 +59,14 @@ public class PlayerManager : MonoBehaviour
 
 		// Get EXP List
 		GetEXPList();
-	
+
 		DontDestroyOnLoad (gameObject);
 
 	}
 
 	void Start()
 	{
+		// Set MAX EXP based on player level
 		if (expList.Count > 0 && _playerLevel < expList.Count) {
 			MAX_EXP = expList [_playerLevel];
 		}
@@ -68,7 +79,12 @@ public class PlayerManager : MonoBehaviour
 	public GameObject player, playerManager;
 	XmlDocument playerDocument = new XmlDocument ();
 
+	//************************************************************
+	// FUNCTIONS FOR LEVEL AND EXP
+	//************************************************************
 
+	// GainLevel() Function - when player level up, gain a level, 
+	// gain 3 AP, new MAX_EXP
 	private void GainLevel(){
 		_playerLevel++;
 		_playerAP += 3;
@@ -77,12 +93,118 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 
+	// GainEXP(int) Function - gain exp and calculate player's
+	// current exp 
 	private void GainEXP(int points){
 		_playerExp += points;
-		if(_playerExp >= MAX_EXP) {
+		while(_playerExp >= MAX_EXP) {
 			_playerExp -= MAX_EXP;
 			GainLevel ();
 		}
+	}
+
+	// DisplayEXP() Function - display player's current level 
+	// and exp 
+	public void DisplayEXP(){
+		Debug.Log ("Level: " + _playerLevel);
+		Debug.Log ("Experience: " + _playerExp);
+	}
+
+	//************************************************************
+	// FUNCTIONS FOR PLAYER'S STATS
+	//************************************************************
+
+	// EnableStatMenu() Function - display player's stat menu
+	public void EnableStatMenu(){
+		playerStatMenu.SetActive (true);
+	}
+
+	// DisableStatMenu() Function - hide player's stat menu
+	public void DisableStatMenu(){
+		playerStatMenu.SetActive (false);
+	}
+
+	// ConfirmAP() Function - finalize attribute points (AP) and 
+	// calculate final stats
+	public void ConfirmAP(){
+		AddVitality (_vitCount);
+		AddStrength (_strCount);
+		AddDefense (_defCount);
+		AddLuck (_luckCount);
+
+		// Restart counter
+		_vitCount = 0;
+		_strCount = 0;
+		_defCount = 0;
+		_luckCount = 0;
+
+		// Display Count
+		_vitAP.text = _vitCount.ToString();
+		_strAP.text = _strCount.ToString ();
+		_defAP.text = _defCount.ToString ();
+		_luckAP.text = _luckCount.ToString ();
+	}
+
+	// Increase and Decrease Button Functions - displays a counter
+	// for each stats based on player's input and AP
+	public void IncreaseVitality(){
+		if (_playerAP > 0) {
+			_playerAP--;
+			_vitCount++;
+		}
+		_vitAP.text = _vitCount.ToString ();
+	}
+	public void DecreaseVitality(){
+		if (_vitCount > 0){
+			_vitCount--;
+			_playerAP++;
+		}
+		_vitAP.text = _vitCount.ToString ();
+	}
+	public void IncreaseStrength(){
+		if (_playerAP > 0) {
+			_playerAP--;
+			_strCount++;
+		}
+		_strAP.text = _strCount.ToString ();
+	}
+	public void DecreaseStrength(){
+		if (_strCount > 0) {
+			_strCount--;
+			_playerAP++;
+		}
+
+		_strAP.text = _strCount.ToString ();
+	}
+	public void IncreaseDefense(){
+		if (_playerAP > 0) {
+			_playerAP--;
+			_defCount++;
+		}
+		_defAP.text = _defCount.ToString ();
+	}
+	public void DecreaseDefense(){
+		if (_defCount > 0) {
+			_defCount--;
+			_playerAP++;
+		}
+
+		_defAP.text = _defCount.ToString ();
+	}
+	public void IncreaseLuck(){
+		if (_playerAP > 0) {
+			_playerAP--;
+			_luckCount++;
+		}
+		_luckAP.text = _luckCount.ToString ();
+	}
+	public void DecreaseLuck(){
+		if (_luckCount > 0) {
+			_luckCount--;
+			_playerAP++;
+		}
+
+		_luckAP.text = _luckCount.ToString ();
 	}
 
 	private void AddVitality(int point){
@@ -98,10 +220,6 @@ public class PlayerManager : MonoBehaviour
 		_playerLuck += point;
 	}
 
-	public void DisplayEXP(){
-		Debug.Log ("Level: " + _playerLevel);
-		Debug.Log ("Experience: " + _playerExp);
-	}
 
 	//************************************************************
 	// LOAD PLAYER FILE FUNCTION

@@ -30,7 +30,7 @@ public class MinigameTest : MonoBehaviour {
 		if (timer > 2)
 		{
 			if (battleManager)
-				battleManager.MinigameEnd();
+				battleManager.MinigameEnd(1, 1);
 			Destroy(gameObject);
 			Debug.Log("Minigame test ending.");
 		}

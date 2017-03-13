@@ -62,10 +62,12 @@ public class LevelManager : MonoBehaviour
 	{
 		TouchInput();
 		AdjustCursor();
+		CheckValidCursor();
 		CheckWin();
 
 	}
 
+	// Check if all nodes have been crossed the correct amount of times
 	void CheckWin()
 	{
 		int count = 0;
@@ -79,6 +81,7 @@ public class LevelManager : MonoBehaviour
 			Debug.Log("You win!");
 	}
 
+	// Activate the cursor object
 	private void TouchInput()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -87,7 +90,11 @@ public class LevelManager : MonoBehaviour
 		{
 			cursor.SetActive(false);
 			if (selectedNodeObject != null)
+			{
 				cursor.transform.position = selectedNodeObject.transform.position;
+				tempLine.ClearLine();
+				tempLine.AddPoint(selectedNodeObject.transform.position);
+			}
 		}
 	}
 
@@ -107,7 +114,7 @@ public class LevelManager : MonoBehaviour
 			}
 			else
 			{
-				// Have some error built in since player finger is not perfect
+				// Do not pick up small error because player's finger is inaccurate
 				Vector3 mPosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				Vector3 cPosition = new Vector3(mPosition.x, mPosition.y, 0);
 				if (Vector3.Magnitude(cPosition - selectedNodeObject.transform.position) < 0.5f)
@@ -198,6 +205,34 @@ public class LevelManager : MonoBehaviour
 			}
 
 		}
+	}
+
+	// Raycast to see if we hit a node we cant cross
+	private void CheckValidCursor()
+	{
+		if (selectedNodeObject == null || !(cursor.activeInHierarchy))
+		{
+			return;
+		}
+
+		if (cursor.transform.position != selectedNodeObject.transform.position)
+		{
+			Vector2 origin = new Vector2(selectedNodeObject.transform.position.x, selectedNodeObject.transform.position.y);
+			Vector2 cursor2D = new Vector2(cursor.transform.position.x, cursor.transform.position.y);
+			Vector2 direction = cursor2D - origin;
+
+			RaycastHit2D hit = Physics2D.Raycast(origin,direction, 100.0f);
+			if (hit != null)
+			{
+				if (hit.transform.gameObject.tag == "SimpleNode")
+				{
+					// Change cursor location based on this
+					Debug.Log("Hit node.", hit.transform.gameObject);
+				}
+			
+			}
+		}
+		
 	}
 
 	void SetNodes()

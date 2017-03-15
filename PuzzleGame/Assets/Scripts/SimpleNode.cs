@@ -28,12 +28,13 @@ public class SimpleNode : MonoBehaviour {
 	}
 	
 
-	public void SetupNode(int max, int r, int c)
+	public void SetupNode(int max, int r, int c, string t)
 	{
 		maxCount = max;
 		currentCount = max;
 		row = r;
 		column = c;
+		type = t;
 	}
 
 

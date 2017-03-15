@@ -1,0 +1,26 @@
+﻿<root>
+<Level>
+	<row>3</row>
+	<column>3</column>
+	<CircleInfo>
+		<Circle>
+			<Hit>1</Hit>
+			<GridIndex>0</GridIndex>
+			<PosX></PosX>
+			<PosY></PosY>
+		</Circle>
+		<Circle>
+			<Hit>1</Hit>
+			<GridIndex>1</GridIndex>
+			<PosX></PosX>
+			<PosY></PosY>
+		</Circle>
+		<Circle>
+			<Hit>1</Hit>
+			<GridIndex>2</GridIndex>
+			<PosX></PosX>
+			<PosY></PosY>
+		</Circle>
+	</CircleInfo>
+</Level>
+</root>

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour 
 {
 	Object SIMPLE_NODE;
+
 	Object CURSOR;
 	GameObject cursor;
 	Object LINE;
@@ -13,25 +14,40 @@ public class LevelManager : MonoBehaviour
 	GameObject tempLineObject;	// Line that extends with player finger
 	Line line;
 	Line tempLine;
+
 	Button clearButton;
 	
 	GameObject selectedNodeObject;
 	SimpleNode selectedNode;
-	GameObject[] nodes;
-	Vector3[] nodeLocations;
+
+	Vector3 mousePosition;
+	Vector3 cursorPosition;
+
+	GameObject[,] nodes;
+	Vector3[,] nodeLocations;
+
+	LoadPuzzle loadPuzzle;
+
 	int nodeCount;
-	int height;
-	int width;
-	int startNode;
-	int endNode;
+	int rowNumber;
+	int colNumber;
+	int startRow;
+	int startCol;
+	int endRow;
+	int endCol;
 
 	void Awake()
 	{
-		height = 3;
-		width = 3;
-		nodeCount = height * width;
-		nodes = new GameObject[nodeCount];
-		nodeLocations = new Vector3[nodeCount];
+		nodeCount = 0;
+		rowNumber = 0;
+		colNumber = 0;
+		startRow = 0;
+		startCol = 0;
+		endRow = 0;
+		endCol = 0;
+
+		nodes = new GameObject[0, 0];
+		nodeLocations = new Vector3[0, 0];
 		selectedNodeObject = null;
 		selectedNode = null;
 	}
@@ -51,7 +67,13 @@ public class LevelManager : MonoBehaviour
 		tempLine = tempLineObject.GetComponent<Line>();
 
 		SIMPLE_NODE = Resources.Load("Prefabs/SimpleNode");
+
+		// Load puzzle
+		loadPuzzle = GameObject.Find("LoadPuzzle").GetComponent<LoadPuzzle>();
 		SetNodes();
+
+		mousePosition = Vector3.zero;
+		cursorPosition = Vector3.zero;
 
 		clearButton = GameObject.Find("ClearButton").GetComponent<Button>();
 		clearButton.onClick.AddListener(ClearButtonClick);
@@ -60,9 +82,12 @@ public class LevelManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		GetCursor();
 		TouchInput();
 		AdjustCursor();
-		CheckValidCursor();
+		SnapCursor();
+		BuildPath();
+		UpdateTempLine();
 		CheckWin();
 
 	}
@@ -75,30 +100,65 @@ public class LevelManager : MonoBehaviour
 		{
 			SimpleNode nodeScript = node.GetComponent<SimpleNode>();
 			if (nodeScript.CurrentCount > 0)
+			{
 				count++;
+			}
 		}
-		if (count == 0 && selectedNode.GridLocation == endNode)
-			Debug.Log("You win!");
+		if (selectedNodeObject != null)
+		{
+			if (count == 0 && selectedNode.Row == endRow && selectedNode.Column == endCol)
+			{
+				Debug.Log("You win!");
+			}
+		}
+	}
+
+	private void GetCursor()
+	{
+		mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		cursorPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
+	}
+
+	private void UpdateTempLine()
+	{
+		tempLine.ClearLine();
+		if (selectedNodeObject != null && cursor.activeInHierarchy)
+		{
+			tempLine.AddPoint(selectedNodeObject.transform.position);
+			tempLine.AddPoint(cursorPosition);
+		}
 	}
 
 	// Activate the cursor object
 	private void TouchInput()
 	{
 		if (Input.GetMouseButtonDown(0))
-			cursor.SetActive(true);
+		{
+			// Dont let the cursor become active unless they select a starting node
+			if (selectedNode != null)
+			{	
+				BoxCollider2D selectedNodeBox = selectedNodeObject.GetComponent<BoxCollider2D>();
+				if (selectedNodeBox.bounds.Contains(cursorPosition))
+				{
+					cursor.SetActive(true);
+				}
+			}
+			else
+			{
+				cursor.SetActive(true);
+			}
+		}
 		if (Input.GetMouseButtonUp(0))
 		{
 			cursor.SetActive(false);
 			if (selectedNodeObject != null)
 			{
 				cursor.transform.position = selectedNodeObject.transform.position;
-				tempLine.ClearLine();
-				tempLine.AddPoint(selectedNodeObject.transform.position);
 			}
 		}
 	}
 
-	// Have mouse move relative to node
+	// Have node move relative to mouse
 	private void AdjustCursor()
 	{
 		// If the player is touching screen move the cursor
@@ -107,18 +167,16 @@ public class LevelManager : MonoBehaviour
 			// If no node is selected
 			if (selectedNode == null)
 			{
-				Vector3 mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				Vector3 cursorPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
 				cursor.transform.position = cursorPosition;
 				return;
 			}
 			else
 			{
 				// Do not pick up small error because player's finger is inaccurate
-				Vector3 mPosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				Vector3 cPosition = new Vector3(mPosition.x, mPosition.y, 0);
-				if (Vector3.Magnitude(cPosition - selectedNodeObject.transform.position) < 0.5f)
+				if (Vector3.Magnitude(cursorPosition - selectedNodeObject.transform.position) < 0.3f)
 				{
+					cursorPosition = selectedNodeObject.transform.position;
+					cursor.transform.position = cursorPosition;
 					return;
 				}
 
@@ -126,8 +184,6 @@ public class LevelManager : MonoBehaviour
 				if (cursor.transform.position == selectedNodeObject.transform.position)
 				{
 					// Get mouse position and convert to world position
-					Vector3 mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-					Vector3 cursorPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
 					float cursorX = cursorPosition.x;
 					float cursorY = cursorPosition.y;
 
@@ -157,10 +213,6 @@ public class LevelManager : MonoBehaviour
 						cursorPosition = new Vector3(cursorX, cursorY, 0);
 					}
 
-					tempLine.ClearLine();
-					tempLine.AddPoint(selectedNodeObject.transform.position);
-					tempLine.AddPoint(cursorPosition);
-
 					cursor.transform.position = cursorPosition;
 				}
 				// Already  moving in a specific direction
@@ -170,64 +222,79 @@ public class LevelManager : MonoBehaviour
 					if (cursor.transform.position.x == selectedNodeObject.transform.position.x)
 					{
 						// Get mouse position and convert to world
-						Vector3 mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-						Vector3 cursorPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
 						float cursorX = cursorPosition.x;
 						float cursorY = cursorPosition.y;
 
 						cursorX = selectedNodeObject.transform.position.x;
 						cursorPosition = new Vector3(cursorX, cursorY, 0);
 						cursor.transform.position = cursorPosition;
-
-						tempLine.ClearLine();
-						tempLine.AddPoint(selectedNodeObject.transform.position);
-						tempLine.AddPoint(cursorPosition);
 					}
 					// Already moving up/down
 					else
 					{
 						// Get mouse position and convert to world
-						Vector3 mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-						Vector3 cursorPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
 						float cursorX = cursorPosition.x;
 						float cursorY = cursorPosition.y;
 
 						cursorY = selectedNodeObject.transform.position.y;
 						cursorPosition = new Vector3(cursorX, cursorY, 0);
 						cursor.transform.position = cursorPosition;
-
-						tempLine.ClearLine();
-						tempLine.AddPoint(selectedNodeObject.transform.position);
-						tempLine.AddPoint(cursorPosition);
 					}
-
 				}
 			}
-
 		}
 	}
 
-	// Raycast to see if we hit a node we cant cross
-	private void CheckValidCursor()
+	private void SnapCursor()
+	{
+		if (selectedNodeObject != null)
+		{
+			BoxCollider2D cursorBox = cursor.GetComponent<BoxCollider2D>();
+			BoxCollider2D selectedNodeBox = selectedNodeObject.GetComponent<BoxCollider2D>();
+			if (cursorBox.bounds.Intersects(selectedNodeBox.bounds))
+			{
+				cursor.transform.position = selectedNodeObject.transform.position;
+			}
+		}
+	}
+	// Recursively selecte nodes that have been crossed over, or block movement
+	private void BuildPath()
 	{
 		if (selectedNodeObject == null || !(cursor.activeInHierarchy))
 		{
 			return;
 		}
 
-		if (cursor.transform.position != selectedNodeObject.transform.position)
+		BoxCollider2D cursorBox = cursor.GetComponent<BoxCollider2D>();
+		BoxCollider2D selectedNodeBox = selectedNodeObject.GetComponent<BoxCollider2D>();
+		if (!cursorBox.bounds.Intersects(selectedNodeBox.bounds))
 		{
 			Vector2 origin = new Vector2(selectedNodeObject.transform.position.x, selectedNodeObject.transform.position.y);
 			Vector2 cursor2D = new Vector2(cursor.transform.position.x, cursor.transform.position.y);
 			Vector2 direction = cursor2D - origin;
 
-			RaycastHit2D hit = Physics2D.Raycast(origin,direction, 100.0f);
+			RaycastHit2D hit = Physics2D.Raycast(origin, direction, direction.magnitude);
 			if (hit != null)
 			{
 				if (hit.transform.gameObject.tag == "SimpleNode")
 				{
+					Debug.Log("Hit node.");
 					// Change cursor location based on this
-					Debug.Log("Hit node.", hit.transform.gameObject);
+					SimpleNode node = hit.transform.gameObject.GetComponent<SimpleNode>();
+					bool successful = SelectNode(hit.transform.gameObject);
+					if (successful)
+					{
+						node.DecreaseCount();
+
+						// recursively call self until full path built
+						AdjustCursor();
+						BuildPath();
+					}
+					else
+					{
+						cursorPosition = hit.point;
+						cursor.transform.position = hit.point;
+					}
 				}
 			
 			}
@@ -235,65 +302,113 @@ public class LevelManager : MonoBehaviour
 		
 	}
 
+	// Load and create puzzle
 	void SetNodes()
 	{	
-		// Set starting node
-		startNode = 0;
-		endNode = 8;
+		loadPuzzle.ReadItems("XML/TestLevel1");
+		List<Dictionary<string, string>> masterList = loadPuzzle.GetPuzzleNodes();
+		Dictionary<string, string> tempDictionary = new Dictionary<string, string>();
+
+		// Find master node
+		foreach (Dictionary<string,string> node in masterList)
+		{
+			if (node["Type"] == "MASTER")
+			{
+				tempDictionary = node;
+				rowNumber = int.Parse(tempDictionary["Row"]);
+				colNumber = int.Parse(tempDictionary["Column"]);
+				break;
+			}
+		}
+
+		// Set the start node
+		foreach (Dictionary<string,string> node in masterList)
+		{
+			if (node["Type"] == "START")
+			{
+				tempDictionary = node;
+				startRow = int.Parse(tempDictionary["Row"]);
+				startCol = int.Parse(tempDictionary["Column"]);
+				break;
+			}
+		}
+
+		// Set the last node
+		foreach (Dictionary<string,string> node in masterList)
+		{
+			if (node["Type"] == "END")
+			{
+				tempDictionary = node;
+				endRow = int.Parse(tempDictionary["Row"]);
+				endCol = int.Parse(tempDictionary["Column"]);
+				nodeCount = (colNumber) * (rowNumber);
+				break;
+			}
+		}
+
+		nodeLocations = new Vector3[rowNumber, colNumber];
+		nodes = new GameObject[rowNumber, colNumber];
 
 		// Set grid locations
-		int i = 0;
-		Vector3 tempLocation = new Vector3(-3, -3, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
+		float distance = 3;
+		float moveDirX = 0;
+		float moveDirY = 0;
+		Vector3 moveDir;
 
-		tempLocation = new Vector3(0, -3, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		tempLocation = new Vector3(3, -3, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		tempLocation = new Vector3(-3, 0, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		tempLocation = new Vector3(0, 0, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		tempLocation = new Vector3(3, 0, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		tempLocation = new Vector3(-3, 3, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		tempLocation = new Vector3(0, 3, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		tempLocation = new Vector3(3, 3, 0);
-		nodeLocations[i] = tempLocation;
-		i++;
-
-		// Create node at each location
-		for (int k = 0; k < nodeCount; k++)
+		// Calculate vector to move all lcoations to center of screen
+		if (rowNumber%2 ==1)
 		{
-			GameObject tempNode;
-			tempNode = Instantiate(SIMPLE_NODE, nodeLocations[k], Quaternion.identity) as GameObject;
-			SimpleNode simpleNodeScript = tempNode.GetComponent<SimpleNode>();
-
-			simpleNodeScript.SetupNode(1, k);
-			nodes[k] = tempNode;
+			moveDirX = ((rowNumber-1)/2) * (-distance);
 		}
+		else
+		{
+			moveDirX = ((rowNumber/2) * (-distance)) - (distance/2);
+		}
+
+		if (colNumber%2 ==1)
+		{
+			moveDirY = ((colNumber-1)/2) * (distance);
+		}
+		else
+		{
+			moveDirY = ((colNumber/2) * (distance)) - (distance/2);
+		}
+		// Direction vector to adjust to center of screen
+		moveDir = new Vector3(moveDirX, moveDirY, 0);
+
+		// Set locations
+		for (int row = 0; row < rowNumber; row++)
+		{
+			for (int col = 0; col < colNumber; col++)
+			{
+				Vector3 tempLocation = new Vector3(col * distance, -row * distance, 0);
+				tempLocation += moveDir;
+				nodeLocations[row,col] = tempLocation;
+			}
+		}
+
+		// Create nodes in correct locations
+		foreach (Dictionary<string,string> node in masterList)
+		{
+			if (node["Type"] == "SIMPLE")
+			{
+				GameObject tempNode = Instantiate(SIMPLE_NODE, nodeLocations[int.Parse(node["Row"]), int.Parse(node["Column"])], Quaternion.identity) as GameObject;
+				SimpleNode simpleNodeScript = tempNode.GetComponent<SimpleNode>();
+
+				simpleNodeScript.SetupNode(int.Parse(node["Count"]), int.Parse(node["Row"]), int.Parse(node["Column"]));
+				nodes[int.Parse(node["Row"]), int.Parse(node["Column"])] = tempNode;
+			}
+		}
+
 	}
 
-	public void SetCursor(Vector3 location)
+	// Called by nodes to keep cursor in node
+	public void SetCursor(GameObject node)
 	{
-		cursor.transform.position = location;
+		if (node == selectedNodeObject)
+		{
+			cursor.transform.position = node.transform.position;
+		}
 	}
 
 	// Return true to node if able to select new node
@@ -301,29 +416,38 @@ public class LevelManager : MonoBehaviour
 	{
 		SimpleNode otherNode = node.GetComponent<SimpleNode>();
 
+		//check for simple node
+		if (otherNode == null)
+			return false;
+		if (otherNode.CurrentCount <=0 )
+		{
+			return false;
+		}
+
 		// First node of game
 		if (selectedNodeObject == null)
 		{
 			selectedNodeObject = node;
 			selectedNode = selectedNodeObject.GetComponent<SimpleNode>();
 
-			// Make sure it is the start node
-			if (selectedNode.GridLocation != startNode)
+			if (selectedNode.Row == startRow && selectedNode.Column == startCol)
+			{
+				// Adjust cursor position
+				cursor.transform.position = node.transform.position;
+
+				// Add new point to line renderer
+				line.AddPoint(selectedNodeObject.transform.position);
+				//Debug.Log(selectedNode.GridLocation.ToString());
+
+				tempLine.AddPoint(selectedNodeObject.transform.position);
+				return true;
+			}
+			else
 			{
 				selectedNodeObject = null;
 				selectedNode = null;
 				return false;
 			}
-
-			// Adjust cursor position
-			cursor.transform.position = node.transform.position;
-
-			// Add new point to line renderer
-			line.AddPoint(selectedNodeObject.transform.position);
-			//Debug.Log(selectedNode.GridLocation.ToString());
-
-			tempLine.AddPoint(selectedNodeObject.transform.position);
-			return true;
 		}
 		else
 		{
@@ -331,15 +455,15 @@ public class LevelManager : MonoBehaviour
 			if (selectedNode.Type == "SIMPLE")
 			{
 				// Node that is already selected
-				if (otherNode.GridLocation == selectedNode.GridLocation)
+				if (otherNode.Row == selectedNode.Row && otherNode.Column == selectedNode.Column)
 				{
 					cursor.transform.position = selectedNode.transform.position;
 					return false;
 				}
 
 				// UP DOWN
-				if (otherNode.GridLocation == (selectedNode.GridLocation + height) ||
-					(otherNode.GridLocation == (selectedNode.GridLocation - height)))
+				if (otherNode.Column == selectedNode.Column &&
+					(otherNode.Row == (selectedNode.Row - 1) || otherNode.Row == selectedNode.Row + 1))
 					{
 						
 						selectedNodeObject = node;
@@ -351,12 +475,11 @@ public class LevelManager : MonoBehaviour
 						tempLine.ClearLine();
 						tempLine.AddPoint(selectedNodeObject.transform.position);
 
-						Debug.Log(selectedNode.GridLocation.ToString());
 						return true;
 					}
 				// LEFT RIGHT
-				if (otherNode.GridLocation == (selectedNode.GridLocation +1) ||
-					otherNode.GridLocation == (selectedNode.GridLocation -1))
+				if (otherNode.Row == selectedNode.Row && (otherNode.Column == selectedNode.Column -1) ||
+					otherNode.Column == (selectedNode.Column + 1))
 				{
 						selectedNodeObject = node;
 						selectedNode = node.GetComponent<SimpleNode>();
@@ -367,7 +490,6 @@ public class LevelManager : MonoBehaviour
 						tempLine.ClearLine();
 						tempLine.AddPoint(selectedNodeObject.transform.position);
 
-						Debug.Log(selectedNode.GridLocation.ToString());
 						return true;
 					}
 			}

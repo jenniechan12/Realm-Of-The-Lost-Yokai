@@ -10,13 +10,16 @@ public class SimpleNode : MonoBehaviour {
 	int maxCount;
 	int currentCount;
 	string type;
-	int gridLocation;
+	int row;
+	int column;
 
 	void Awake()
 	{
 		type = "SIMPLE";
 		maxCount = 0;
 		currentCount = 0;
+		row = 0;
+		column = 0;
 	}
 
 	// Use this for initialization
@@ -24,22 +27,17 @@ public class SimpleNode : MonoBehaviour {
 		levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
 
-	}
-
-
-
-	public void SetupNode(int max, int location)
+	public void SetupNode(int max, int r, int c)
 	{
 		maxCount = max;
 		currentCount = max;
-		gridLocation = location;
+		row = r;
+		column = c;
 	}
 
 
+	// Try to select the node
 	public void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.tag == "Cursor")
@@ -52,13 +50,22 @@ public class SimpleNode : MonoBehaviour {
 		}
 	}
 
+	// Lock cursor on node
 	public void OnTriggerStay2D(Collider2D other)
 	{
+		/*
 		if (other.tag == "Cursor")
 		{
-			levelManager.SetCursor(gameObject.transform.position);
+			levelManager.SetCursor(gameObject);
 			
 		}
+		*/
+	}
+
+	public void DecreaseCount()
+	{
+		if (currentCount > 0)
+			currentCount--;
 	}
 
 	public void ResetCount()
@@ -72,10 +79,16 @@ public class SimpleNode : MonoBehaviour {
 		set {type = value;}
 	}
 
-	public int GridLocation
+	public int Row
 	{
-		get {return gridLocation;}
-		set {gridLocation = value;}
+		get {return row;}
+		set {row = value;}
+	}
+
+	public int Column
+	{
+		get {return column;}
+		set {column = value;}
 	}
 
 	public int CurrentCount

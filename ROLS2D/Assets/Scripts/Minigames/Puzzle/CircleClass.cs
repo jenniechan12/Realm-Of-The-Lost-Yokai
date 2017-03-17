@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class CircleClass: MonoBehaviour {
 
-	protected bool isTouchable;
 	protected int hitCount;
 	protected int hitMax;
 	protected int gridIndex;
 
-	public bool IsTouchable{
-		get{ return isTouchable; }
-		set{ isTouchable = value; }
-	}
 
 	public int HitCount{
 		get{return hitCount;}

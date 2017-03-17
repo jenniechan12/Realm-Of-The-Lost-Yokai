@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PuzzleManager : MonoBehaviour
 {
-	public GameObject test;
-	private PuzzleTest pt;
 
 	Object BASE_CIRCLE;
 
@@ -18,15 +17,22 @@ public class PuzzleManager : MonoBehaviour
 	int row, col, count, maxCount;
 	public int startPoint, endPoint;
 
+	// Line Render
+	private LineRenderer lr;
+	private int lineCounter = 0; 
 
 	// User's Input
-	private bool isSwiping;
+	private bool isSwiping, isGameOVer = false;
 	public GameObject startObj, endObj;
 	RaycastHit2D hit;
 
 	void Awake ()
 	{
-		pt = test.GetComponent<PuzzleTest> ();
+		// Line Render
+		lr = GameObject.Find("LineDisplay").GetComponent<LineRenderer>();
+		if (lr == null)
+			Debug.Log ("ERROR - CANNOT FIND LINE DISPLAY GAMEOBJECT IN SCENE");
+
 		colorList = new Color[]{ Color.black, Color.red, Color.blue };
 		row = 3;
 		col = 3; 
@@ -49,6 +55,9 @@ public class PuzzleManager : MonoBehaviour
 		CheckMouseSwipe ();
 	}
 
+	// *********************************************************************************************
+	// SetCircle() Function - Create the puzzle layout
+	// *********************************************************************************************
 	void SetCircle ()
 	{
 
@@ -84,15 +93,22 @@ public class PuzzleManager : MonoBehaviour
 		}
 	}
 
+	// *********************************************************************************************
+	// HitCircle() Function - When player hit a circle, calculate circle's hit count & display line 
+	// *********************************************************************************************
 	void HitCircle (GameObject gameObj)
 	{
 		CircleClass currentHitScript = gameObj.GetComponent<CircleClass> ();
 		currentHitScript.HitCount--;
 		gameObj.GetComponent<SpriteRenderer> ().color = colorList [currentHitScript.HitCount];
+
+		// Display Line
+		int index = lineCounter;
+		lineCounter++;
+		lr.numPositions = lineCounter;
+		lr.SetPosition (index, gameObj.transform.localPosition);
 	}
-
-
-
+		
 
 	// *********************************************************************************************
 	// CheckMouseSwipe() Function - Check for user mouse's input
@@ -106,7 +122,9 @@ public class PuzzleManager : MonoBehaviour
 
 		if (isSwiping) {
 			//endPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
-			CheckObjClick ();
+			if (!isGameOVer) {
+				CheckObjClick ();
+			}
 		}
 
 		if (Input.GetMouseButtonUp (0)) {
@@ -144,31 +162,54 @@ public class PuzzleManager : MonoBehaviour
 						endObj = hit.collider.gameObject;
 						HitCircle (endObj);							
 					} else
-						endObj = null;
+						endObj = startObj;
 				} else {
+					endObj = hit.collider.gameObject;
+					HitCircle (endObj);
 					CalculateWin ();
+					isGameOVer = true;
+					Invoke ("ResetLevel", 1.5f);
+
 				}
 			} 
 
 			// When start object and end object are not null, do this
 			else if (startObj != null && endObj != null && endObj != hit.collider.gameObject) {
 				if (tempCC.GridIndex != endPoint) {
+					startObj = endObj;
+
 					if (tempCC.HitCount > 0 && CheckCircleAdjacent (endObj, hit.collider.gameObject)) {
-						startObj = endObj;
+						//startObj = endObj;
 						endObj = hit.collider.gameObject;
 						HitCircle (endObj);
 					} else
-						endObj = null;
+						endObj = startObj;
 				} else {
-					CalculateWin ();
+					if (CheckCircleAdjacent (endObj, hit.collider.gameObject)) {
+						endObj = hit.collider.gameObject;
+						HitCircle (endObj);
+						CalculateWin ();
+						isGameOVer = true;
+						Invoke ("ResetLevel", 1.5f);
+					}
 				}
+
 			}
 		}
 	}
 
 	bool CheckCircleAdjacent(GameObject obj1, GameObject obj2){
-		if (Vector3.Distance(obj1.transform.position, obj2.transform.position) == 2){
-			Debug.Log (Vector3.Distance (obj1.transform.position, obj2.transform.position));
+		CircleClass obj1cc = obj1.GetComponent<CircleClass> ();
+		CircleClass obj2cc = obj2.GetComponent<CircleClass> ();
+
+
+		if ((Vector3.Distance(obj1.transform.position, obj2.transform.position) == 2) &&
+			(obj2cc.GridIndex == obj1cc.GridIndex + 1 ||
+			obj2cc.GridIndex == obj1cc.GridIndex - 1 ||
+			obj2cc.GridIndex == obj1cc.GridIndex + 3 ||
+			obj2cc.GridIndex == obj1cc.GridIndex - 3
+			)){
+
 			return true;
 		}
 		else{ 
@@ -199,6 +240,11 @@ public class PuzzleManager : MonoBehaviour
 
 			circle.GetComponent<SpriteRenderer> ().color = colorList [tempCC.HitCount];
 		}
+
+		// Reset Line Renderer
+		lineCounter = 0;
+		lr.numPositions = lineCounter;
+
 	}
 }
 

@@ -6,6 +6,7 @@ public class Line : MonoBehaviour {
 
 	List<Vector3> pointList;
 	LineRenderer lineRenderer;
+	int order;
 
 	// Use this for initialization
 	void Start () 
@@ -13,6 +14,7 @@ public class Line : MonoBehaviour {
 		lineRenderer = GetComponent<LineRenderer>();
 		pointList = new List<Vector3>();
 		lineRenderer.sortingLayerName = "Line";
+		lineRenderer.sortingOrder = order;
 	}
 
 
@@ -28,11 +30,21 @@ public class Line : MonoBehaviour {
 		lineRenderer.SetPositions(lineArray);
 	}
 
+	public void SetLayer(int layerOrder)
+	{
+		order = layerOrder;
+	}
 
 	// Add a new point to the line renderer list and update
 	public void AddPoint(Vector3 point)
 	{
 		pointList.Add(point);
+		UpdateLine();
+	}
+
+	public void RemovePoint(Vector3 point)
+	{
+		pointList.RemoveAt(pointList.LastIndexOf(point));
 		UpdateLine();
 	}
 

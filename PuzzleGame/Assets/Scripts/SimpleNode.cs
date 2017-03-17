@@ -5,13 +5,15 @@ using UnityEngine;
 public class SimpleNode : MonoBehaviour {
 
 	LevelManager levelManager;
-
+	SpriteRenderer spriteRenderer;
 
 	int maxCount;
 	int currentCount;
 	string type;
 	int row;
 	int column;
+	enum HitColor {BLACK, BLUE, PURPLE, RED};
+	HitColor currentColor;
 
 	void Awake()
 	{
@@ -20,11 +22,16 @@ public class SimpleNode : MonoBehaviour {
 		currentCount = 0;
 		row = 0;
 		column = 0;
+		currentColor = HitColor.BLACK;
 	}
 
 	// Use this for initialization
 	void Start () {
 		levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+		if (spriteRenderer == null)
+			Debug.Log("Error finding sprite renderer in simple node.");
+		UpdateColor();
 	}
 	
 
@@ -45,9 +52,34 @@ public class SimpleNode : MonoBehaviour {
 		{
 			if (currentCount > 0)
 			{
-				if (levelManager.SelectNode(gameObject))
-					currentCount--;
+				levelManager.SelectNode(gameObject);
 			}
+		}
+	}
+
+	private void UpdateColor()
+	{
+		if (spriteRenderer == null)
+			Debug.Log("No sprite renderer.");
+		if (currentCount == 3)
+		{
+			spriteRenderer.color = Color.red;
+			currentColor = HitColor.RED;
+		}
+		else if (currentCount == 2)
+		{
+			spriteRenderer.color = Color.magenta;
+			currentColor = HitColor.PURPLE;
+		}
+		else if (currentCount == 1)
+		{
+			spriteRenderer.color = Color.blue;
+			currentColor = HitColor.BLUE;
+		}
+		else
+		{
+			spriteRenderer.color = Color.black;
+			currentColor = HitColor.BLACK;
 		}
 	}
 
@@ -66,12 +98,22 @@ public class SimpleNode : MonoBehaviour {
 	public void DecreaseCount()
 	{
 		if (currentCount > 0)
+		{
 			currentCount--;
+			UpdateColor();
+		}
 	}
 
-	public void ResetCount()
+	public void Reset()
 	{
 		currentCount = maxCount;
+		UpdateColor();
+	}
+
+	public void Undo()
+	{
+		currentCount++;
+		UpdateColor();
 	}
 
 	public string Type

@@ -24,6 +24,12 @@
 		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
+		<Number>5</Number>
+		<Xml>XML/TestLevel5</Xml>
+		<Unlocked>Yes</Unlocked>
+		<Completed>No</Completed>
+	</Puzzle>
+	<Puzzle>
 		<Number>6</Number>
 		<Xml>XML/TestLevel6</Xml>
 		<Unlocked>Yes</Unlocked>
@@ -38,6 +44,18 @@
 	<Puzzle>
 		<Number>8</Number>
 		<Xml>XML/TestLevel8</Xml>
+		<Unlocked>Yes</Unlocked>
+		<Completed>No</Completed>
+	</Puzzle>
+	<Puzzle>
+		<Number>9</Number>
+		<Xml>XML/TestLevel9</Xml>
+		<Unlocked>Yes</Unlocked>
+		<Completed>No</Completed>
+	</Puzzle>
+	<Puzzle>
+		<Number>10</Number>
+		<Xml>XML/TestLevel10</Xml>
 		<Unlocked>Yes</Unlocked>
 		<Completed>No</Completed>
 	</Puzzle>

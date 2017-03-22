@@ -9,8 +9,7 @@ public class LoadPuzzle : MonoBehaviour {
 	private TextAsset PUZZLE_XML; 
 
 	private List<Dictionary<string, string>> nodeDictionaryList = new List<Dictionary<string, string>>();
-	private Dictionary<string, string> nodeDictionary = new Dictionary<string, string>();
-
+	private Dictionary<string, string> puzzleInfoDictionary = new Dictionary<string, string>();
 
 	void Awake()
 	{
@@ -20,14 +19,29 @@ public class LoadPuzzle : MonoBehaviour {
 	// Read items from XML database
 	public void ReadItems(string puzzleLocation)
 	{
-		nodeDictionary.Clear();
+		Dictionary<string, string> nodeDictionary = new Dictionary<string, string>();
+		puzzleInfoDictionary.Clear();
 		nodeDictionaryList.Clear();
 
 		PUZZLE_XML = Resources.Load(puzzleLocation) as TextAsset;
 		XmlDocument xmlDocument = new XmlDocument();
 		xmlDocument.LoadXml(PUZZLE_XML.text);
 
-		XmlNodeList nodeNodeList = xmlDocument.GetElementsByTagName("Node");
+		XmlNodeList nodeNodeList = xmlDocument.GetElementsByTagName("PuzzleInfo");
+
+		// Grab item details and store in dictionary
+		foreach (XmlNode nodeInfo in nodeNodeList)
+		{
+			XmlNodeList nodeContent = nodeInfo.ChildNodes;
+			puzzleInfoDictionary = new Dictionary<string, string>();
+
+			foreach(XmlNode content in nodeContent)
+			{
+				puzzleInfoDictionary.Add(content.Name.ToString(), content.InnerText);
+			}
+		}
+
+		nodeNodeList = xmlDocument.GetElementsByTagName("Node");
 
 		// Grab item details and store in dictionary
 		foreach (XmlNode nodeInfo in nodeNodeList)
@@ -47,6 +61,11 @@ public class LoadPuzzle : MonoBehaviour {
 	public List<Dictionary<string, string>> GetPuzzleNodes()
 	{
 		return nodeDictionaryList;
+	}
+
+	public Dictionary<string, string> GetPuzzleInfo()
+	{
+		return puzzleInfoDictionary;
 	}
 
 	/*

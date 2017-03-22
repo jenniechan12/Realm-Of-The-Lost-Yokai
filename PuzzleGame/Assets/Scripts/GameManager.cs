@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
-		currentPuzzle = 7;
+		currentPuzzle = 1;
 	}
 
 	// Use this for initialization
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
 
 	public int CurrentPuzzle
 	{

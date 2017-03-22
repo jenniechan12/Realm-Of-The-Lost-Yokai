@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
 
 	Object SIMPLE_NODE;
 	Object DIAGONAL_NODE;
+	Object MOVING_SIMPLE_NODE;
 
 	Object SELECT_CIRCLE;
 	GameObject selectCircle;	// Circle showing selected node
@@ -78,7 +79,6 @@ public class LevelManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{	
-
 		gameManagerObject = GameObject.Find("GameManager") as GameObject;
 		gameManager = gameManagerObject.GetComponent<GameManager>();
 		puzzleDatabase = gameManagerObject.GetComponent<PuzzleDatabase>();
@@ -110,6 +110,7 @@ public class LevelManager : MonoBehaviour
 
 		SIMPLE_NODE = Resources.Load("Prefabs/SimpleNode");
 		DIAGONAL_NODE = Resources.Load("Prefabs/DiagonalNode");
+		MOVING_SIMPLE_NODE = Resources.Load("Prefabs/MovingSimpleNode");
 
 		mousePosition = Vector3.zero;
 		cursorPosition = Vector3.zero;
@@ -146,25 +147,20 @@ public class LevelManager : MonoBehaviour
 		int count = 0;
 		foreach(GameObject node in nodes)
 		{
-			if (node.tag == "SimpleNode")
-			{
-				SimpleNode nodeScript = node.GetComponent<SimpleNode>();
-				if (nodeScript.CurrentCount > 0)
+				Node nodeScript = node.GetComponent<Node>();
+				if (nodeScript.CurrentCount > 0 && nodeScript.CountType == "Normal")
 				{
 					count++;
 				}
-			}
 		}
 		if (selectedNodeObject != null)
 		{
-			if (selectedNodeObject.tag == "SimpleNode")
+			Node nodeScript = selectedNodeObject.GetComponent<Node>();
+			if (count == 0 && nodeScript.Row == endRow && nodeScript.Column == endCol)
 			{
-				SimpleNode nodeScript = selectedNodeObject.GetComponent<SimpleNode>();
-				if (count == 0 && nodeScript.Row == endRow && nodeScript.Column == endCol)
-				{
-					Debug.Log("You win!");
-				}
+				Debug.Log("You win!");
 			}
+
 		}
 	}
 
@@ -256,14 +252,13 @@ public class LevelManager : MonoBehaviour
 					return;
 				}
 
-				if (selectedNodeObject.tag == "SimpleNode")
-				{
-					SimpleNode nodeScript = selectedNodeObject.GetComponent<SimpleNode>();
-					if (nodeScript.Type == "SIMPLE")
-						SimpleCursorAdjust();
-					else if (nodeScript.Type == "DIAGONAL")
-						DiagonalCursorAdjust();
-				}
+
+				Node nodeScript = selectedNodeObject.GetComponent<Node>();
+				if (nodeScript.LeaveType == "SIMPLE")
+					SimpleCursorAdjust();
+				else if (nodeScript.LeaveType == "DIAGONAL")
+					DiagonalCursorAdjust();
+				
 			}
 		}
 	}
@@ -399,7 +394,7 @@ public class LevelManager : MonoBehaviour
 
 			if (hit != null)
 			{
-				if (hit.transform.gameObject.tag == "SimpleNode")
+				if (hit.transform.gameObject.tag == "Node")
 				{
 					//Debug.DrawRay(origin, direction, Color.red, 3);
 					// Change cursor location based on this
@@ -431,23 +426,19 @@ public class LevelManager : MonoBehaviour
 
 		float distance = 0;
 
-		// Find master node
-		foreach (Dictionary<string,string> node in masterList)
-		{
-			if (node["Type"] == "MASTER")
-			{
-				tempDictionary = node;
-				rowNumber = int.Parse(tempDictionary["Row"]);
-				colNumber = int.Parse(tempDictionary["Column"]);
-				startRow = int.Parse(tempDictionary["StartRow"]);
-				startCol = int.Parse(tempDictionary["StartColumn"]);
-				endRow = int.Parse(tempDictionary["EndRow"]);
-				endCol = int.Parse(tempDictionary["EndColumn"]);
-				distance = int.Parse(tempDictionary["Distance"]);
-				nodeCount = (colNumber) * (rowNumber);
-				break;
-			}
-		}
+		// Set up the puzzle info
+		Debug.Log("Loading master.");
+		tempDictionary = loadPuzzle.GetPuzzleInfo();
+
+		rowNumber = int.Parse(tempDictionary["Row"]);
+		colNumber = int.Parse(tempDictionary["Column"]);
+		startRow = int.Parse(tempDictionary["StartRow"]);
+		startCol = int.Parse(tempDictionary["StartColumn"]);
+		endRow = int.Parse(tempDictionary["EndRow"]);
+		endCol = int.Parse(tempDictionary["EndColumn"]);
+		distance = int.Parse(tempDictionary["Distance"]);
+		nodeCount = (colNumber) * (rowNumber);
+				
 
 		nodeLocations = new Vector3[rowNumber, colNumber];
 		nodes = new GameObject[rowNumber, colNumber];
@@ -459,16 +450,16 @@ public class LevelManager : MonoBehaviour
 		Vector3 moveDir;
 
 		// Calculate vector to move all locations to center of screen
-		if (rowNumber%2 ==1)
+		if (colNumber%2 ==1)
 		{
 			moveDirX = ((colNumber-1)/2.0f) * (-distance);
 		}
 		else
 		{
-			moveDirX = ((colNumber/2.0f) * (-distance)) - (distance/2.0f);
+			moveDirX = ((colNumber/2.0f) * (-distance)) + (distance/2.0f);
 		}
 
-		if (colNumber%2 ==1)
+		if (rowNumber%2 ==1)
 		{
 			moveDirY = ((rowNumber-1)/2.0f) * (distance);
 		}
@@ -494,20 +485,59 @@ public class LevelManager : MonoBehaviour
 		// Create nodes in correct locations
 		foreach (Dictionary<string,string> node in masterList)
 		{
-			if (node["Type"] == "SIMPLE")
+			if (node["LeaveType"] == "SIMPLE" && node["MoveType"] == "STATIC")
 			{
 				GameObject tempNode = Instantiate(SIMPLE_NODE, nodeLocations[int.Parse(node["Row"]), int.Parse(node["Column"])], Quaternion.identity) as GameObject;
-				SimpleNode simpleNodeScript = tempNode.GetComponent<SimpleNode>();
+				Node simpleNodeScript = tempNode.GetComponent<Node>();
 
-				simpleNodeScript.SetupNode(int.Parse(node["Count"]), int.Parse(node["Row"]), int.Parse(node["Column"]), node["Type"]);
+				simpleNodeScript.SetupNode(int.Parse(node["Count"]), 
+										int.Parse(node["Row"]), 
+										int.Parse(node["Column"]), 
+										node["LeaveType"],
+										node["MoveType"],
+										node["SpecialType"],
+										node["CountType"]);
 				nodes[int.Parse(node["Row"]), int.Parse(node["Column"])] = tempNode;
 			}
-			else if (node["Type"] == "DIAGONAL")
+			else if (node["LeaveType"] == "DIAGONAL" && node["MoveType"] == "STATIC")
 			{
 				GameObject tempNode = Instantiate(DIAGONAL_NODE, nodeLocations[int.Parse(node["Row"]), int.Parse(node["Column"])], Quaternion.identity) as GameObject;
-				SimpleNode simpleNodeScript = tempNode.GetComponent<SimpleNode>();
+				Node simpleNodeScript = tempNode.GetComponent<Node>();
 
-				simpleNodeScript.SetupNode(int.Parse(node["Count"]), int.Parse(node["Row"]), int.Parse(node["Column"]), node["Type"]);
+				simpleNodeScript.SetupNode(int.Parse(node["Count"]), 
+										int.Parse(node["Row"]), 
+										int.Parse(node["Column"]), 
+										node["LeaveType"],
+										node["MoveType"],
+										node["SpecialType"],
+										node["CountType"]);
+				nodes[int.Parse(node["Row"]), int.Parse(node["Column"])] = tempNode;
+			}
+			else if (node["LeaveType"] == "SIMPLE" && node["MoveType"] == "MOVING")
+			{
+				GameObject tempNode = Instantiate(MOVING_SIMPLE_NODE, nodeLocations[int.Parse(node["Row"]), int.Parse(node["Column"])], Quaternion.identity) as GameObject;
+				Node simpleNodeScript = tempNode.GetComponent<Node>();
+				MovingNode movingNodeScript = tempNode.GetComponent<MovingNode>();
+				simpleNodeScript.SetupNode(int.Parse(node["Count"]), 
+										int.Parse(node["Row"]), 
+										int.Parse(node["Column"]), 
+										node["LeaveType"],
+										node["MoveType"],
+										node["SpecialType"],
+										node["CountType"]);
+				movingNodeScript.SetupNode(float.Parse(node["MoveSpeed"]));
+				int wayPointCount = int.Parse(node["WayPointCount"]);
+				for (int i = 0; i < wayPointCount; i++)
+				{
+					string Col = "Col" + i.ToString();
+					string Row = "Row" + i.ToString();
+					int col = int.Parse(node[Col]);
+					int row = int.Parse(node[Row]);
+					Vector3 point = nodeLocations[col, row];
+					movingNodeScript.AddWayPoint(point);
+				}
+
+
 				nodes[int.Parse(node["Row"]), int.Parse(node["Column"])] = tempNode;
 			}
 		}
@@ -538,7 +568,7 @@ public class LevelManager : MonoBehaviour
 	public void SelectNode(GameObject node)
 	{
 		
-		if (node.tag == "SimpleNode")
+		if (node.tag == "Node")
 		{
 			SelectSimpleNode(node);
 		}
@@ -550,8 +580,8 @@ public class LevelManager : MonoBehaviour
 
 	public void SelectSimpleNode(GameObject node)
 	{
-		SimpleNode newNodeScript = node.GetComponent<SimpleNode>();
-		if (newNodeScript.CurrentCount <=0 )
+		Node newNodeScript = node.GetComponent<Node>();
+		if (newNodeScript.CountType == "NORMAL" && newNodeScript.CurrentCount <=0 )
 		{
 				return;
 		}
@@ -590,7 +620,7 @@ public class LevelManager : MonoBehaviour
 		}
 		else
 		{
-			SimpleNode selectedNode = selectedNodeObject.GetComponent<SimpleNode>();
+			Node selectedNode = selectedNodeObject.GetComponent<Node>();
 
 			// Node that is already selected
 			if (node == selectedNodeObject)
@@ -598,79 +628,34 @@ public class LevelManager : MonoBehaviour
 				return;
 			}
 
-			// Left and right movement
-			if (selectedNode.Type == "SIMPLE")
-			{
-				// If a neighbor
-				if ((newNodeScript.Column == selectedNode.Column &&
-					(newNodeScript.Row == (selectedNode.Row - 1) || newNodeScript.Row == selectedNode.Row + 1))
-					|| (newNodeScript.Row == selectedNode.Row && (newNodeScript.Column == selectedNode.Column -1) ||
-						newNodeScript.Column == (selectedNode.Column + 1)))
-					{
-						// Set previous node
-						previousNodeObject = selectedNodeObject;	
-						// Set new node
-						selectedNodeObject = node;
+			// Set previous node
+			previousNodeObject = selectedNodeObject;	
+			// Set new node
+			selectedNodeObject = node;
 
-						// Let node know it has been selected
-						Debug.Log(newNodeScript.Row + ", " + newNodeScript.Column);
-						newNodeScript.DecreaseCount();
+			// Let node know it has been selected
+			//Debug.Log(newNodeScript.Row + ", " + newNodeScript.Column);
+			newNodeScript.DecreaseCount();
 
-						// Move the cursor to the new node
-						cursor.transform.position = selectedNode.transform.position;
+			// Move the cursor to the new node
+			cursor.transform.position = selectedNode.transform.position;
 
-						// Add new point to line renderer
-						line.AddPoint(selectedNodeObject.transform.position);
-						tempLine.ClearLine();
-						tempLine.AddPoint(selectedNodeObject.transform.position);
+			// Add new point to line renderer
+			line.AddPoint(selectedNodeObject.transform.position);
+			tempLine.ClearLine();
+			tempLine.AddPoint(selectedNodeObject.transform.position);
 
-						// Update select cirlce
-						selectCircle.transform.position = selectedNodeObject.transform.position;
-						return;
-					}
-			}
-			else if (selectedNode.Type == "DIAGONAL")
-			{
-				// If a neighbor allow to be selected
-				if ((newNodeScript.Column == selectedNode.Column-1 && 
-					(newNodeScript.Row == selectedNode.Row -1 
-						|| newNodeScript.Row == selectedNode.Row + 1))
-					|| (newNodeScript.Column == selectedNode.Column + 1 && 
-						(newNodeScript.Row == selectedNode.Row -1 
-							|| newNodeScript.Row == selectedNode.Row + 1)))
-				{
-					// Set previous node
-					previousNodeObject = selectedNodeObject;	
-					// Set new node	
-					selectedNodeObject = node;
-
-					// Let node know it has been selected
-					newNodeScript.DecreaseCount();
-
-						// Move the cursor to the new node
-					cursor.transform.position = selectedNode.transform.position;
-
-					// Add new point to line renderer
-					line.AddPoint(selectedNodeObject.transform.position);
-					tempLine.ClearLine();
-					tempLine.AddPoint(selectedNodeObject.transform.position);
-
-					// Update select cirlce
-					selectCircle.transform.position = selectedNodeObject.transform.position;
-					return;
-				}
-			}
+			// Update select cirlce
+			selectCircle.transform.position = selectedNodeObject.transform.position;
+			return;
 		}
-		return;
 	}
 
 	public void UndoButtonClick()
 	{
 		if (previousNodeObject != null)
 		{
-				if (selectedNodeObject.tag == "SimpleNode")
-				{
-					SimpleNode selectedNode = selectedNodeObject.GetComponent<SimpleNode>();
+					Node selectedNode = selectedNodeObject.GetComponent<Node>();
 
 					// Set new node
 					selectedNode.Undo();
@@ -688,7 +673,7 @@ public class LevelManager : MonoBehaviour
 					selectCircle.transform.position = selectedNodeObject.transform.position;
 
 					previousNodeObject = null;
-				}
+				
 		}
 	}
 
@@ -697,7 +682,7 @@ public class LevelManager : MonoBehaviour
 	{
 		foreach(GameObject node in nodes)
 		{
-			SimpleNode nodeScript = node.GetComponent<SimpleNode>();
+			Node nodeScript = node.GetComponent<Node>();
 			nodeScript.Reset();
 		}
 		selectedNodeObject = null;

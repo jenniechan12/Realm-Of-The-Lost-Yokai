@@ -1,12 +1,12 @@
 ﻿<root>
 	<Node>
 		<Type>MASTER</Type>
-		<Row>4</Row>
-		<Column>6</Column>
-		<StartRow>1</StartRow>
+		<Row>5</Row>
+		<Column>4</Column>
+		<StartRow>4</StartRow>
 		<StartColumn>3</StartColumn>
-		<EndRow>3</EndRow>
-		<EndColumn>4</EndColumn>
+		<EndRow>0</EndRow>
+		<EndColumn>3</EndColumn>
 		<Distance>3</Distance>
 	</Node>
 	<Node>
@@ -31,19 +31,7 @@
 		<Row>0</Row>
 		<Column>3</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
-	</Node>
-	<Node>
-		<Row>0</Row>
-		<Column>4</Column>
-		<Type>SIMPLE</Type>
-		<Count>1</Count>
-	</Node>
-	<Node>
-		<Row>0</Row>
-		<Column>5</Column>
-		<Type>SIMPLE</Type>
-		<Count>0</Count>
+		<Count>2</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
@@ -55,31 +43,19 @@
 		<Row>1</Row>
 		<Column>1</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
+		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>2</Column>
 		<Type>SIMPLE</Type>
-		<Count>0</Count>
+		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>3</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
-	</Node>
-	<Node>
-		<Row>1</Row>
-		<Column>4</Column>
-		<Type>SIMPLE</Type>
-		<Count>1</Count>
-	</Node>
-	<Node>
-		<Row>1</Row>
-		<Column>5</Column>
-		<Type>SIMPLE</Type>
-		<Count>0</Count>
+		<Count>3</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
@@ -97,25 +73,13 @@
 		<Row>2</Row>
 		<Column>2</Column>
 		<Type>SIMPLE</Type>
-		<Count>0</Count>
+		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
 		<Column>3</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
-	</Node>
-	<Node>
-		<Row>2</Row>
-		<Column>4</Column>
-		<Type>SIMPLE</Type>
-		<Count>1</Count>
-	</Node>
-	<Node>
-		<Row>2</Row>
-		<Column>5</Column>
-		<Type>SIMPLE</Type>
-		<Count>1</Count>
+		<Count>2</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
@@ -139,19 +103,31 @@
 		<Row>3</Row>
 		<Column>3</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
+		<Count>2</Count>
 	</Node>
 	<Node>
-		<Row>3</Row>
-		<Column>4</Column>
+		<Row>4</Row>
+		<Column>0</Column>
 		<Type>SIMPLE</Type>
 		<Count>1</Count>
 	</Node>
 	<Node>
-		<Row>3</Row>
-		<Column>5</Column>
+		<Row>4</Row>
+		<Column>1</Column>
 		<Type>SIMPLE</Type>
 		<Count>1</Count>
+	</Node>
+	<Node>
+		<Row>4</Row>
+		<Column>2</Column>
+		<Type>SIMPLE</Type>
+		<Count>1</Count>
+	</Node>
+	<Node>
+		<Row>4</Row>
+		<Column>3</Column>
+		<Type>SIMPLE</Type>
+		<Count>2</Count>
 	</Node>
 </root>
 

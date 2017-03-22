@@ -45,6 +45,7 @@ public class SimpleNode : MonoBehaviour {
 	}
 
 
+	/*
 	// Try to select the node
 	public void OnTriggerEnter2D(Collider2D other)
 	{
@@ -55,7 +56,7 @@ public class SimpleNode : MonoBehaviour {
 				levelManager.SelectNode(gameObject);
 			}
 		}
-	}
+	}*/
 
 	private void UpdateColor()
 	{
@@ -83,17 +84,6 @@ public class SimpleNode : MonoBehaviour {
 		}
 	}
 
-	// Lock cursor on node
-	public void OnTriggerStay2D(Collider2D other)
-	{
-		/*
-		if (other.tag == "Cursor")
-		{
-			levelManager.SetCursor(gameObject);
-			
-		}
-		*/
-	}
 
 	public void DecreaseCount()
 	{

@@ -8,6 +8,11 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour 
 {
+
+	GameObject gameManagerObject;
+	GameManager gameManager;
+	PuzzleDatabase puzzleDatabase;
+
 	Object SIMPLE_NODE;
 	Object DIAGONAL_NODE;
 
@@ -53,6 +58,7 @@ public class LevelManager : MonoBehaviour
 	int endRow;
 	int endCol;
 
+
 	void Awake()
 	{
 		nodeCount = 0;
@@ -72,6 +78,11 @@ public class LevelManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{	
+
+		gameManagerObject = GameObject.Find("GameManager") as GameObject;
+		gameManager = gameManagerObject.GetComponent<GameManager>();
+		puzzleDatabase = gameManagerObject.GetComponent<PuzzleDatabase>();
+
 		CURSOR = Resources.Load("Prefabs/Cursor") as Object;
 		cursor = Instantiate(CURSOR, Vector3.zero, Quaternion.identity) as GameObject;
 		cursor.SetActive(false);
@@ -110,18 +121,21 @@ public class LevelManager : MonoBehaviour
 		undoButton.onClick.AddListener(UndoButtonClick);
 		// Load puzzle
 		loadPuzzle = GameObject.Find("LoadPuzzle").GetComponent<LoadPuzzle>();
-		SetNodes();
+
+		string puzzleLocation = puzzleDatabase.GetXml(gameManager.CurrentPuzzle);
+		SetNodes(puzzleLocation);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		GetCursor();
 		TouchInput();
+		GetCursor();
 		AdjustCursor();
 		SnapCursor();
 		BuildPath();
 		UpdateTempLine();
+		CursorColliderUpdate();
 		CheckWin();
 
 	}
@@ -154,6 +168,23 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
+	void CursorColliderUpdate()
+	{
+		if (selectedNodeObject == null)
+		{
+			BoxCollider2D cursorBox = cursor.GetComponent<BoxCollider2D>();
+			BoxCollider2D nodeBox;
+			foreach (GameObject node in nodes)
+			{
+				nodeBox = node.GetComponent<BoxCollider2D>();
+				if (cursorBox.bounds.Intersects(nodeBox.bounds))
+				{
+					SelectNode(node);
+				}
+			}
+		}
+	}
+
 	// Get mouse and convert to cursor at start of frame
 	private void GetCursor()
 	{
@@ -167,9 +198,13 @@ public class LevelManager : MonoBehaviour
 		if (selectedNodeObject != null && cursor.activeInHierarchy)
 		{
 			tempLine.AddPoint(selectedNodeObject.transform.position);
-			tempLine.AddPoint(cursorPosition);
+			tempLine.AddPoint(cursor.transform.position);
 		}
 	}
+
+	// ********************************************************************
+	// CURSOR ADJUSTING
+	// ********************************************************************
 
 	// Activate the cursor object
 	private void TouchInput()
@@ -265,15 +300,13 @@ public class LevelManager : MonoBehaviour
 		{
 			//Debug.Log("UP DOWN " + angle.ToString());
 			cursorX = selectedNodeObject.transform.position.x;
-			cursorPosition = new Vector3(cursorX, cursorY, 0);
-			cursor.transform.position = cursorPosition;
+			cursor.transform.position = new Vector3(cursorX, cursorY, 0);
 		}
 		else
 		{
 			//Debug.Log("LEFT RIGHT "+angle.ToString());
 			cursorY = selectedNodeObject.transform.position.y;
-			cursorPosition = new Vector3(cursorX, cursorY, 0);
-			cursor.transform.position = cursorPosition;
+			cursor.transform.position = new Vector3(cursorX, cursorY, 0);
 		}
 	}
 
@@ -314,9 +347,8 @@ public class LevelManager : MonoBehaviour
 						// Back to world coordinates
 						cursorX += selectedNodeObject.transform.position.x;
 						cursorY += selectedNodeObject.transform.position.y;
-
-						cursorPosition = new Vector3(cursorX, cursorY, 0);
-						cursor.transform.position = cursorPosition;
+						 
+						cursor.transform.position = new Vector3(cursorX, cursorY, 0);
 				}
 				// Bottom left and right
 				else
@@ -328,8 +360,8 @@ public class LevelManager : MonoBehaviour
 						cursorY *= -1;
 						cursorY += selectedNodeObject.transform.position.y;
 
-						cursorPosition = new Vector3(cursorX, cursorY, 0);
-						cursor.transform.position = cursorPosition;
+						new Vector3(cursorX, cursorY, 0);
+						cursor.transform.position = new Vector3(cursorX, cursorY, 0);
 				}
 	}
 
@@ -364,22 +396,23 @@ public class LevelManager : MonoBehaviour
 			Vector2 direction = cursor2D - origin;
 
 			RaycastHit2D hit = Physics2D.Raycast(origin, direction, direction.magnitude);
+
 			if (hit != null)
 			{
 				if (hit.transform.gameObject.tag == "SimpleNode")
 				{
+					//Debug.DrawRay(origin, direction, Color.red, 3);
 					// Change cursor location based on this
-					SimpleNode node = hit.transform.gameObject.GetComponent<SimpleNode>();
 					SelectNode(hit.transform.gameObject);
 					if (hit.transform.gameObject == selectedNodeObject)
 					{
 						// recursively call self until full path built
 						AdjustCursor();
+						SnapCursor();
 						BuildPath();
 					}
 					else
 					{
-						cursorPosition = hit.point;
 						cursor.transform.position = hit.point;
 					}
 				}
@@ -390,11 +423,13 @@ public class LevelManager : MonoBehaviour
 	}
 
 	// Load and create puzzle
-	void SetNodes()
+	void SetNodes(string xmlFile)
 	{	
-		loadPuzzle.ReadItems("XML/TestLevel2");
+		loadPuzzle.ReadItems(xmlFile);
 		List<Dictionary<string, string>> masterList = loadPuzzle.GetPuzzleNodes();
 		Dictionary<string, string> tempDictionary = new Dictionary<string, string>();
+
+		float distance = 0;
 
 		// Find master node
 		foreach (Dictionary<string,string> node in masterList)
@@ -404,30 +439,11 @@ public class LevelManager : MonoBehaviour
 				tempDictionary = node;
 				rowNumber = int.Parse(tempDictionary["Row"]);
 				colNumber = int.Parse(tempDictionary["Column"]);
-				break;
-			}
-		}
-
-		// Set the start node
-		foreach (Dictionary<string,string> node in masterList)
-		{
-			if (node["Type"] == "START")
-			{
-				tempDictionary = node;
-				startRow = int.Parse(tempDictionary["Row"]);
-				startCol = int.Parse(tempDictionary["Column"]);
-				break;
-			}
-		}
-
-		// Set the last node
-		foreach (Dictionary<string,string> node in masterList)
-		{
-			if (node["Type"] == "END")
-			{
-				tempDictionary = node;
-				endRow = int.Parse(tempDictionary["Row"]);
-				endCol = int.Parse(tempDictionary["Column"]);
+				startRow = int.Parse(tempDictionary["StartRow"]);
+				startCol = int.Parse(tempDictionary["StartColumn"]);
+				endRow = int.Parse(tempDictionary["EndRow"]);
+				endCol = int.Parse(tempDictionary["EndColumn"]);
+				distance = int.Parse(tempDictionary["Distance"]);
 				nodeCount = (colNumber) * (rowNumber);
 				break;
 			}
@@ -437,13 +453,12 @@ public class LevelManager : MonoBehaviour
 		nodes = new GameObject[rowNumber, colNumber];
 
 		// Set grid locations
-		float distance = 4;
 		float moveDirX = 0;
 		float moveDirY = 0;
 
 		Vector3 moveDir;
 
-		// Calculate vector to move all lcoations to center of screen
+		// Calculate vector to move all locations to center of screen
 		if (rowNumber%2 ==1)
 		{
 			moveDirX = ((colNumber-1)/2.0f) * (-distance);
@@ -461,6 +476,7 @@ public class LevelManager : MonoBehaviour
 		{
 			moveDirY = ((rowNumber/2.0f) * (distance)) - (distance/2.0f);
 		}
+
 		// Direction vector to adjust to center of screen
 		moveDir = new Vector3(moveDirX, moveDirY, 0);
 
@@ -501,12 +517,20 @@ public class LevelManager : MonoBehaviour
 		endIcon.transform.position = nodeLocations[endRow, endCol];
 	}
 
-	// Called by nodes to keep cursor in node
-	public void SetCursor(GameObject node)
+	// When current puzzle is finished or player exits
+	void ClearNodes()
 	{
-		if (node == selectedNodeObject)
+		line.ClearLine();
+		tempLine.ClearLine();
+
+		selectedNodeObject = null;
+		previousNodeObject = null;
+
+		selectCircle.SetActive(false);
+
+		foreach (GameObject node in nodes)
 		{
-				cursor.transform.position = node.transform.position;
+			Destroy(node);
 		}
 	}
 
@@ -571,7 +595,6 @@ public class LevelManager : MonoBehaviour
 			// Node that is already selected
 			if (node == selectedNodeObject)
 			{
-				cursor.transform.position = selectedNodeObject.transform.position;
 				return;
 			}
 
@@ -590,6 +613,7 @@ public class LevelManager : MonoBehaviour
 						selectedNodeObject = node;
 
 						// Let node know it has been selected
+						Debug.Log(newNodeScript.Row + ", " + newNodeScript.Column);
 						newNodeScript.DecreaseCount();
 
 						// Move the cursor to the new node
@@ -677,6 +701,7 @@ public class LevelManager : MonoBehaviour
 			nodeScript.Reset();
 		}
 		selectedNodeObject = null;
+		previousNodeObject = null;
 
 		selectCircle.SetActive(false);
 

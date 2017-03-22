@@ -3,9 +3,9 @@
 		<Type>MASTER</Type>
 		<Row>2</Row>
 		<Column>5</Column>
-		<StartRow>0</StartRow>
+		<StartRow>1</StartRow>
 		<StartColumn>0</StartColumn>
-		<EndRow>0</EndRow>
+		<EndRow>1</EndRow>
 		<EndColumn>4</EndColumn>
 		<Distance>3</Distance>
 	</Node>
@@ -13,13 +13,13 @@
 		<Row>0</Row>
 		<Column>0</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
+		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
 		<Column>1</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
+		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
@@ -31,13 +31,13 @@
 		<Row>0</Row>
 		<Column>3</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
+		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
 		<Column>4</Column>
 		<Type>SIMPLE</Type>
-		<Count>1</Count>
+		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
@@ -55,21 +55,22 @@
 		<Row>1</Row>
 		<Column>2</Column>
 		<Type>SIMPLE</Type>
-		<Count>0</Count>
+		<Count>2</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>3</Column>
 		<Type>SIMPLE</Type>
-		<Count>0</Count>
+		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>4</Column>
 		<Type>SIMPLE</Type>
-		<Count>0</Count>
+		<Count>1</Count>
 	</Node>
 </root>
+
 
 
 

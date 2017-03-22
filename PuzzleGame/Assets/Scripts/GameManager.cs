@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	int currentPuzzle;
+
+	void Awake()
+	{
+		currentPuzzle = 7;
+	}
+
 	// Use this for initialization
 	void Start () {
 		
@@ -12,5 +19,11 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public int CurrentPuzzle
+	{
+		get{return currentPuzzle;}
+		set{currentPuzzle = value;}
 	}
 }

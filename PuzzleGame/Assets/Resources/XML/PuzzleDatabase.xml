@@ -59,4 +59,16 @@
 		<Unlocked>Yes</Unlocked>
 		<Completed>No</Completed>
 	</Puzzle>
+	<Puzzle>
+		<Number>11</Number>
+		<Xml>XML/TestLevel11</Xml>
+		<Unlocked>Yes</Unlocked>
+		<Completed>No</Completed>
+	</Puzzle>
+	<Puzzle>
+		<Number>12</Number>
+		<Xml>XML/TestLevel12</Xml>
+		<Unlocked>Yes</Unlocked>
+		<Completed>No</Completed>
+	</Puzzle>
 </root>

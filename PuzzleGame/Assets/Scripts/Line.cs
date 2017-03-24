@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Line : MonoBehaviour {
 
-	List<Vector3> pointList;
+	List<GameObject> pointList;
 	LineRenderer lineRenderer;
 	int order;
 
@@ -12,20 +12,24 @@ public class Line : MonoBehaviour {
 	void Start () 
 	{
 		lineRenderer = GetComponent<LineRenderer>();
-		pointList = new List<Vector3>();
+		pointList = new List<GameObject>();
 		lineRenderer.sortingLayerName = "Line";
 		lineRenderer.sortingOrder = order;
 	}
 
+	void Update()
+	{
+		UpdateLine();
+	}
 
 	// Render the line with new points
-	public void UpdateLine()
+	void UpdateLine()
 	{
 		lineRenderer.numPositions = pointList.Count;
 		Vector3[] lineArray = new Vector3[pointList.Count];
 		for (int i = 0; i < pointList.Count; i++)
 		{
-			lineArray[i] = pointList[i];
+			lineArray[i] = pointList[i].transform.position;
 		}
 		lineRenderer.SetPositions(lineArray);
 	}
@@ -36,16 +40,16 @@ public class Line : MonoBehaviour {
 	}
 
 	// Add a new point to the line renderer list and update
-	public void AddPoint(Vector3 point)
+	public void AddPoint(GameObject point)
 	{
 		pointList.Add(point);
-		UpdateLine();
+		//UpdateLine();
 	}
 
-	public void RemovePoint(Vector3 point)
+	public void RemovePoint(GameObject point)
 	{
 		pointList.RemoveAt(pointList.LastIndexOf(point));
-		UpdateLine();
+		//UpdateLine();
 	}
 
 	public void ClearLine()

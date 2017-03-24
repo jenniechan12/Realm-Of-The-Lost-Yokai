@@ -34,9 +34,10 @@ public class Node : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-		if (spriteRenderer == null)
-			Debug.Log("Error finding sprite renderer in simple node.");
+		if (leaveType != "EMPTY")
+			spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+		else
+			spriteRenderer = null;
 		UpdateColor();
 	}
 	
@@ -69,8 +70,10 @@ public class Node : MonoBehaviour {
 
 	private void UpdateColor()
 	{
-		if (spriteRenderer == null)
-			Debug.Log("No sprite renderer.");
+		if (leaveType == "EMPTY")
+		{
+			return;
+		}
 		if (currentCount == 3)
 		{
 			spriteRenderer.color = Color.red;

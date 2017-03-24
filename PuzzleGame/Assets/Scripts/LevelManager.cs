@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
 	Object SIMPLE_NODE;
 	Object DIAGONAL_NODE;
 	Object MOVING_SIMPLE_NODE;
+	Object EMPTY_NODE;
 
 	Object SELECT_CIRCLE;
 	GameObject selectCircle;	// Circle showing selected node
@@ -111,6 +112,7 @@ public class LevelManager : MonoBehaviour
 		SIMPLE_NODE = Resources.Load("Prefabs/SimpleNode");
 		DIAGONAL_NODE = Resources.Load("Prefabs/DiagonalNode");
 		MOVING_SIMPLE_NODE = Resources.Load("Prefabs/MovingSimpleNode");
+		EMPTY_NODE = Resources.Load("Prefabs/EmptyNode");
 
 		mousePosition = Vector3.zero;
 		cursorPosition = Vector3.zero;
@@ -130,6 +132,7 @@ public class LevelManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		SnapCursor();
 		TouchInput();
 		GetCursor();
 		AdjustCursor();
@@ -137,6 +140,7 @@ public class LevelManager : MonoBehaviour
 		BuildPath();
 		UpdateTempLine();
 		CursorColliderUpdate();
+		UpdateSelectCircle();
 		CheckWin();
 
 	}
@@ -147,11 +151,13 @@ public class LevelManager : MonoBehaviour
 		int count = 0;
 		foreach(GameObject node in nodes)
 		{
+			
 				Node nodeScript = node.GetComponent<Node>();
-				if (nodeScript.CurrentCount > 0 && nodeScript.CountType == "Normal")
+				if (nodeScript.CurrentCount > 0 && nodeScript.CountType == "NORMAL")
 				{
 					count++;
 				}
+			
 		}
 		if (selectedNodeObject != null)
 		{
@@ -170,12 +176,17 @@ public class LevelManager : MonoBehaviour
 		{
 			BoxCollider2D cursorBox = cursor.GetComponent<BoxCollider2D>();
 			BoxCollider2D nodeBox;
+			Node nodeScript;
 			foreach (GameObject node in nodes)
 			{
-				nodeBox = node.GetComponent<BoxCollider2D>();
-				if (cursorBox.bounds.Intersects(nodeBox.bounds))
+				nodeScript = node.GetComponent<Node>();
+				if (nodeScript.LeaveType != "EMPTY")
 				{
-					SelectNode(node);
+					nodeBox = node.GetComponent<BoxCollider2D>();
+					if (cursorBox.bounds.Intersects(nodeBox.bounds))
+					{
+						SelectNode(node);
+					}
 				}
 			}
 		}
@@ -188,13 +199,23 @@ public class LevelManager : MonoBehaviour
 		cursorPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
 	}
 
+	// Cirlce on selected objecct
+	private void UpdateSelectCircle()
+	{
+		if (selectedNodeObject != null)
+		{
+			if (selectCircle.activeInHierarchy)
+				selectCircle.transform.position = selectedNodeObject.transform.position;
+		}
+	}
+
 	private void UpdateTempLine()
 	{
 		tempLine.ClearLine();
 		if (selectedNodeObject != null && cursor.activeInHierarchy)
 		{
-			tempLine.AddPoint(selectedNodeObject.transform.position);
-			tempLine.AddPoint(cursor.transform.position);
+			tempLine.AddPoint(selectedNodeObject);
+			tempLine.AddPoint(cursor);
 		}
 	}
 
@@ -269,12 +290,12 @@ public class LevelManager : MonoBehaviour
 		// If not moving in a direction yet use new mouse cursor position
 		if (cursor.transform.position == selectedNodeObject.transform.position)
 		{
-			relativePosition = cursorPosition - selectedNodeObject.transform.position;
+				relativePosition = cursorPosition - selectedNodeObject.transform.position;
 		}
 		// If already moving in a direction use the current cursor position
 		else
 		{
-			relativePosition = cursor.transform.position - selectedNodeObject.transform.position;
+				relativePosition = cursor.transform.position - selectedNodeObject.transform.position;
 		}
 
 		// Store x  and y cursor
@@ -285,23 +306,21 @@ public class LevelManager : MonoBehaviour
 		if (cursorX == selectedNodeObject.transform.position.x &&
 				cursorY == selectedNodeObject.transform.position.y)
 		{
-			cursor.transform.position = cursorPosition;
-			return;
+				cursor.transform.position = cursorPosition;
+				return;
 		}
 
 		float angle = Vector3.Angle(selectedNodeObject.transform.up, relativePosition);
 
 		if ((angle >= 0 && angle <=45.0f) || (angle >= 135.0f && angle <= 180.0f))
 		{
-			//Debug.Log("UP DOWN " + angle.ToString());
-			cursorX = selectedNodeObject.transform.position.x;
-			cursor.transform.position = new Vector3(cursorX, cursorY, 0);
+				cursorX = selectedNodeObject.transform.position.x;
+				cursor.transform.position = new Vector3(cursorX, cursorY, 0);
 		}
 		else
 		{
-			//Debug.Log("LEFT RIGHT "+angle.ToString());
-			cursorY = selectedNodeObject.transform.position.y;
-			cursor.transform.position = new Vector3(cursorX, cursorY, 0);
+				cursorY = selectedNodeObject.transform.position.y;
+				cursor.transform.position = new Vector3(cursorX, cursorY, 0);
 		}
 	}
 
@@ -427,7 +446,6 @@ public class LevelManager : MonoBehaviour
 		float distance = 0;
 
 		// Set up the puzzle info
-		Debug.Log("Loading master.");
 		tempDictionary = loadPuzzle.GetPuzzleInfo();
 
 		rowNumber = int.Parse(tempDictionary["Row"]);
@@ -527,17 +545,29 @@ public class LevelManager : MonoBehaviour
 										node["CountType"]);
 				movingNodeScript.SetupNode(float.Parse(node["MoveSpeed"]));
 				int wayPointCount = int.Parse(node["WayPointCount"]);
+
 				for (int i = 0; i < wayPointCount; i++)
 				{
-					string Col = "Col" + i.ToString();
-					string Row = "Row" + i.ToString();
+					string Col = "Col" + ((i+1).ToString());
+					string Row = "Row" + ((i+1).ToString());
 					int col = int.Parse(node[Col]);
 					int row = int.Parse(node[Row]);
-					Vector3 point = nodeLocations[col, row];
-					movingNodeScript.AddWayPoint(point);
+					movingNodeScript.AddWayPoint(nodeLocations[row, col]);
 				}
+				nodes[int.Parse(node["Row"]), int.Parse(node["Column"])] = tempNode;
+			}
+			else if (node["LeaveType"] == "EMPTY" && node["MoveType"] == "EMPTY")
+			{
+				GameObject tempNode = Instantiate(EMPTY_NODE, nodeLocations[int.Parse(node["Row"]), int.Parse(node["Column"])], Quaternion.identity) as GameObject;
+				Node simpleNodeScript = tempNode.GetComponent<Node>();
 
-
+				simpleNodeScript.SetupNode(int.Parse(node["Count"]), 
+										int.Parse(node["Row"]), 
+										int.Parse(node["Column"]), 
+										node["LeaveType"],
+										node["MoveType"],
+										node["SpecialType"],
+										node["CountType"]);
 				nodes[int.Parse(node["Row"]), int.Parse(node["Column"])] = tempNode;
 			}
 		}
@@ -560,7 +590,8 @@ public class LevelManager : MonoBehaviour
 
 		foreach (GameObject node in nodes)
 		{
-			Destroy(node);
+			if (node != null)
+				Destroy(node);
 		}
 	}
 
@@ -601,14 +632,14 @@ public class LevelManager : MonoBehaviour
 				cursor.transform.position = node.transform.position;
 
 				// Add new point to line renderer
-				line.AddPoint(selectedNodeObject.transform.position);
+				line.AddPoint(selectedNodeObject);
 				//Debug.Log(selectedNode.GridLocation.ToString());
 
 				// Set the select cirlce
 				selectCircle.SetActive(true);
 				selectCircle.transform.position = selectedNodeObject.transform.position;
 
-				tempLine.AddPoint(selectedNodeObject.transform.position);
+				//tempLine.AddPoint(selectedNodeObject);
 				return;
 			}
 			else
@@ -641,12 +672,10 @@ public class LevelManager : MonoBehaviour
 			cursor.transform.position = selectedNode.transform.position;
 
 			// Add new point to line renderer
-			line.AddPoint(selectedNodeObject.transform.position);
-			tempLine.ClearLine();
-			tempLine.AddPoint(selectedNodeObject.transform.position);
+			line.AddPoint(selectedNodeObject);
+			//tempLine.ClearLine();
+			//tempLine.AddPoint(selectedNodeObject);
 
-			// Update select cirlce
-			selectCircle.transform.position = selectedNodeObject.transform.position;
 			return;
 		}
 	}
@@ -659,7 +688,7 @@ public class LevelManager : MonoBehaviour
 
 					// Set new node
 					selectedNode.Undo();
-					line.RemovePoint(selectedNodeObject.transform.position);
+					line.RemovePoint(selectedNodeObject);
 
 					selectedNodeObject = previousNodeObject;
 		
@@ -667,7 +696,7 @@ public class LevelManager : MonoBehaviour
 
 					// Remove point from line renderer
 					tempLine.ClearLine();
-					tempLine.AddPoint(selectedNodeObject.transform.position);
+					tempLine.AddPoint(selectedNodeObject);
 
 					// Update select cirlce
 					selectCircle.transform.position = selectedNodeObject.transform.position;
@@ -682,8 +711,10 @@ public class LevelManager : MonoBehaviour
 	{
 		foreach(GameObject node in nodes)
 		{
+			
 			Node nodeScript = node.GetComponent<Node>();
 			nodeScript.Reset();
+			
 		}
 		selectedNodeObject = null;
 		previousNodeObject = null;

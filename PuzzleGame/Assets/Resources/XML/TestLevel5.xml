@@ -1,6 +1,5 @@
 ﻿<root>
-	<Node>
-		<Type>MASTER</Type>
+	<PuzzleInfo>
 		<Row>6</Row>
 		<Column>6</Column>
 		<StartRow>2</StartRow>
@@ -8,221 +7,329 @@
 		<EndRow>2</EndRow>
 		<EndColumn>2</EndColumn>
 		<Distance>3</Distance>
-	</Node>
+	</PuzzleInfo>
 	<Node>
 		<Row>0</Row>
 		<Column>0</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
 		<Column>1</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
 		<Column>2</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
 		<Column>3</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
 		<Column>4</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>0</Row>
 		<Column>5</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>0</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>1</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>2</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>3</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>4</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>1</Row>
 		<Column>5</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
 		<Column>0</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
 		<Column>1</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
 		<Column>2</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
 		<Column>3</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
 		<Column>4</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>2</Row>
 		<Column>5</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
 		<Column>0</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
 		<Column>1</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
 		<Column>2</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
 		<Column>3</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
 		<Column>4</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
 		<Column>5</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>4</Row>
 		<Column>0</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>4</Row>
 		<Column>1</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>4</Row>
 		<Column>2</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>4</Row>
 		<Column>3</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>4</Row>
 		<Column>4</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>4</Row>
 		<Column>5</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>5</Row>
 		<Column>0</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>5</Row>
 		<Column>1</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>5</Row>
 		<Column>2</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>5</Row>
 		<Column>3</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>5</Row>
 		<Column>4</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 	</Node>
 	<Node>
 		<Row>5</Row>
 		<Column>5</Column>
-		<Type>SIMPLE</Type>
+		<LeaveType>SIMPLE</LeaveType>
+		<MoveType>STATIC</MoveType>
+		<SpecialType>NONE</SpecialType>
+		<CountType>NORMAL</CountType>
 		<Count>0</Count>
 	</Node>
 </root>

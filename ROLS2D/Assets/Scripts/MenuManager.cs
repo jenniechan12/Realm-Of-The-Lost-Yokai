@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour {
 
 	private PlayerInventory playerInventory;
 	private BattleManager battleManager;
+	private GameManager gameManager;
 
 	private GameObject systemButton;
 	private GameObject inventoryButton;
@@ -29,6 +30,7 @@ public class MenuManager : MonoBehaviour {
 	void Start()
 	{
 		playerInventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		SetButtons();
 	}
 
@@ -60,10 +62,14 @@ public class MenuManager : MonoBehaviour {
 
 		 button = openButton.GetComponent<Button>();
 		 button.onClick.AddListener(OpenButtonClick);
-		 //if (!battling)
-				openButton.SetActive(true);
-			//else
-				//openButton.SetActive(false);
+		 if (gameManager.Battling())
+		 {
+			openButton.SetActive(false);
+		}
+		else
+		{
+			openButton.SetActive(true);
+		}
 		
 	}
 
@@ -101,7 +107,11 @@ public class MenuManager : MonoBehaviour {
 		displaying = false;
 
 		// Update buttons
-		openButton.SetActive(true);
+		if (gameManager.Battling())
+			openButton.SetActive(false);
+		else
+			openButton.SetActive(true);
+
 		inventoryButton.SetActive(false);
 		systemButton.SetActive(false);
 		statsButton.SetActive(false);

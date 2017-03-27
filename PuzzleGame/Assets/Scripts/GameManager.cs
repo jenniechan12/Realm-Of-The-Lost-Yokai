@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
-		currentPuzzle = 12;
+		currentPuzzle = 13;
 	}
 
 	// Use this for initialization

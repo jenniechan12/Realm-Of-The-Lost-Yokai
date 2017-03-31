@@ -77,4 +77,16 @@
 		<Unlocked>Yes</Unlocked>
 		<Completed>No</Completed>
 	</Puzzle>
+	<Puzzle>
+		<Number>14</Number>
+		<Xml>XML/TestLevel14</Xml>
+		<Unlocked>Yes</Unlocked>
+		<Completed>No</Completed>
+	</Puzzle>
+	<Puzzle>
+		<Number>15</Number>
+		<Xml>XML/TestTeleport</Xml>
+		<Unlocked>Yes</Unlocked>
+		<Completed>No</Completed>
+	</Puzzle>
 </root>

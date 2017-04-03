@@ -1,5 +1,4 @@
-﻿// NOTE: 3/17 selectedNode is a SimpleNode componenent reference and needs to be removed so that the selected node
-// can support more than just simple nodes. 
+﻿// Manages cursor movement and node selection when cursor crosses over a node
 
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +15,6 @@ public class LevelManager : MonoBehaviour
 	Object SIMPLE_NODE;
 	Object DIAGONAL_NODE;
 	Object MOVING_SIMPLE_NODE;
-	Object EMPTY_NODE;
 	Object TELEPORT_NODE;
 
 	Object SELECT_CIRCLE;
@@ -29,31 +27,24 @@ public class LevelManager : MonoBehaviour
 	GameObject endIcon;
 
 	Object CURSOR;
-	GameObject cursor;
-
-	Object LINE;
-	Object TEMP_LINE;
-	GameObject lineObject;	// Line as nodes are selected
-	GameObject tempLineObject;	// Line that extends with player finger
-	Line line;
-	Line tempLine;
+	GameObject cursor;	// Cursor object that moves to selected nodes
 
 	Button clearButton;
 	Button undoButton;
-	
-	GameObject selectedNodeObject;
 
-	GameObject previousNodeObject;
+	LineManager lineManager;
 
-	Vector3 mousePosition;
-	Vector3 cursorPosition;
+	GameObject selectedNodeObject;	// currently selected node
+	GameObject previousNodeObject;	// last node that was selected
+
+	Vector3 mousePosition;	// Mouse location
+	Vector3 cursorPosition; // Mouse location turned into screen location
 
 	GameObject[,] nodes;
 	Vector3[,] nodeLocations;
 
 	LoadPuzzle loadPuzzle;
 
-	int nodeCount;
 	int rowNumber;
 	int colNumber;
 	int startRow;
@@ -61,6 +52,7 @@ public class LevelManager : MonoBehaviour
 	int endRow;
 	int endCol;
 
+	int nodeCount;
 
 	void Awake()
 	{
@@ -99,21 +91,12 @@ public class LevelManager : MonoBehaviour
 		selectCircle = Instantiate(SELECT_CIRCLE, Vector3.zero, Quaternion.identity) as GameObject;
 		selectCircle.SetActive(false);
 
-		LINE = Resources.Load("Prefabs/Line") as Object;
-		TEMP_LINE = Resources.Load("Prefabs/TempLine") as Object;
-
-		lineObject = Instantiate(LINE, Vector3.zero, Quaternion.identity) as GameObject;
-		line = lineObject.GetComponent<Line>();
-		line.SetLayer(0);
-
-		tempLineObject = Instantiate(TEMP_LINE, Vector3.zero, Quaternion.identity) as GameObject; 
-		tempLine = tempLineObject.GetComponent<Line>();
-		tempLine.SetLayer(1);
+		lineManager = gameObject.GetComponent<LineManager>();
 
 		SIMPLE_NODE = Resources.Load("Prefabs/SimpleNode");
 		DIAGONAL_NODE = Resources.Load("Prefabs/DiagonalNode");
 		MOVING_SIMPLE_NODE = Resources.Load("Prefabs/MovingSimpleNode");
-		EMPTY_NODE = Resources.Load("Prefabs/EmptyNode");
+
 		TELEPORT_NODE = Resources.Load("Prefabs/TeleportNode");
 	
 		mousePosition = Vector3.zero;
@@ -124,6 +107,7 @@ public class LevelManager : MonoBehaviour
 
 		undoButton = GameObject.Find("UndoButton").GetComponent<Button>();
 		undoButton.onClick.AddListener(UndoButtonClick);
+
 		// Load puzzle
 		loadPuzzle = GameObject.Find("LoadPuzzle").GetComponent<LoadPuzzle>();
 
@@ -136,11 +120,10 @@ public class LevelManager : MonoBehaviour
 	{
 		SnapCursor();
 		TouchInput();
-		GetCursor();
+		ReadCursor();
 		AdjustCursor();
 		SnapCursor();
 		BuildPath();
-		UpdateTempLine();
 		CursorColliderUpdate();
 		UpdateSelectCircle();
 		CheckWin();
@@ -218,7 +201,7 @@ public class LevelManager : MonoBehaviour
 	}
 
 	// Get mouse and convert to cursor at start of frame
-	private void GetCursor()
+	private void ReadCursor()
 	{
 		mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		cursorPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
@@ -234,15 +217,6 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	private void UpdateTempLine()
-	{
-		tempLine.ClearLine();
-		if (selectedNodeObject != null && cursor.activeInHierarchy)
-		{
-			tempLine.AddPoint(selectedNodeObject);
-			tempLine.AddPoint(cursor);
-		}
-	}
 
 	// ********************************************************************
 	// CURSOR ADJUSTING
@@ -497,9 +471,7 @@ public class LevelManager : MonoBehaviour
 		startCol = int.Parse(tempDictionary["StartColumn"]);
 		endRow = int.Parse(tempDictionary["EndRow"]);
 		endCol = int.Parse(tempDictionary["EndColumn"]);
-		distance = int.Parse(tempDictionary["Distance"]);
-		nodeCount = (colNumber) * (rowNumber);
-				
+		distance = int.Parse(tempDictionary["Distance"]);			
 
 		nodeLocations = new Vector3[rowNumber, colNumber];
 		nodes = new GameObject[rowNumber, colNumber];
@@ -624,8 +596,9 @@ public class LevelManager : MonoBehaviour
 	// When current puzzle is finished or player exits
 	void ClearNodes()
 	{
-		line.ClearLine();
-		tempLine.ClearLine();
+		// Tell the line manager the level is complete
+		lineManager.ClearLines();
+		//tempLine.ClearLine();
 
 		selectedNodeObject = null;
 		previousNodeObject = null;
@@ -676,7 +649,7 @@ public class LevelManager : MonoBehaviour
 				cursor.transform.position = node.transform.position;
 
 				// Add new point to line renderer
-				line.AddPoint(selectedNodeObject);
+				lineManager.AddPoint(selectedNodeObject);
 				//Debug.Log(selectedNode.GridLocation.ToString());
 
 				// Set the select cirlce
@@ -715,7 +688,7 @@ public class LevelManager : MonoBehaviour
 			cursor.transform.position = selectedNode.transform.position;
 
 			// Add new point to line renderer
-			line.AddPoint(selectedNodeObject);
+			lineManager.AddPoint(selectedNodeObject);
 			//tempLine.ClearLine();
 			//tempLine.AddPoint(selectedNodeObject);
 
@@ -729,17 +702,17 @@ public class LevelManager : MonoBehaviour
 		{
 					Node selectedNode = selectedNodeObject.GetComponent<Node>();
 
+					//line.RemovePoint(selectedNodeObject;
 					// Set new node
 					selectedNode.Undo();
-					line.RemovePoint(selectedNodeObject);
 
 					selectedNodeObject = previousNodeObject;
 		
 					cursor.transform.position = selectedNode.transform.position;
 
 					// Remove point from line renderer
-					tempLine.ClearLine();
-					tempLine.AddPoint(selectedNodeObject);
+					//tempLine.ClearLine();
+					//tempLine.AddPoint(selectedNodeObject);
 
 					// Update select cirlce
 					selectCircle.transform.position = selectedNodeObject.transform.position;
@@ -766,9 +739,17 @@ public class LevelManager : MonoBehaviour
 
 		selectCircle.SetActive(false);
 
-		line.ClearLine();
-		tempLine.ClearLine();
+		//line.ClearLine();
+		//tempLine.ClearLine();
 	}
 
+	public GameObject GetSelectedNodeObject()
+	{
+		return selectedNodeObject;
+	}
 
+	public GameObject GetCursor()
+	{
+		return cursor;
+	}
 }

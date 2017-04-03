@@ -4,7 +4,7 @@
 		<Column>5</Column>
 		<StartRow>1</StartRow>
 		<StartColumn>1</StartColumn>
-		<EndRow>2</EndRow>
+		<EndRow>1</EndRow>
 		<EndColumn>2</EndColumn>
 		<Distance>4</Distance>
 	</PuzzleInfo>
@@ -15,7 +15,7 @@
 		<MoveType>MOVING</MoveType>
 		<SpecialType>NONE</SpecialType>
 		<CountType>NORMAL</CountType>
-		<Count>1</Count>
+		<Count>0</Count>
 		<WayPointCount>4</WayPointCount>
 		<Row1>4</Row1>
 		<Col1>0</Col1>
@@ -91,7 +91,7 @@
 		<MoveType>MOVING</MoveType>
 		<SpecialType>NONE</SpecialType>
 		<CountType>NORMAL</CountType>
-		<Count>1</Count>
+		<Count>0</Count>
 		<WayPointCount>4</WayPointCount>
 		<Row1>0</Row1>
 		<Col1>0</Col1>
@@ -268,7 +268,7 @@
 		<MoveType>STATIC</MoveType>
 		<SpecialType>NONE</SpecialType>
 		<CountType>NORMAL</CountType>
-		<Count>1</Count>
+		<Count>0</Count>
 	</Node>
 	<Node>
 		<Row>3</Row>
@@ -305,7 +305,7 @@
 		<MoveType>MOVING</MoveType>
 		<SpecialType>NONE</SpecialType>
 		<CountType>NORMAL</CountType>
-		<Count>1</Count>
+		<Count>0</Count>
 		<WayPointCount>4</WayPointCount>
 		<Row1>4</Row1>
 		<Col1>4</Col1>
@@ -381,7 +381,7 @@
 		<MoveType>MOVING</MoveType>
 		<SpecialType>NONE</SpecialType>
 		<CountType>NORMAL</CountType>
-		<Count>1</Count>
+		<Count>0</Count>
 		<WayPointCount>4</WayPointCount>
 		<Row1>0</Row1>
 		<Col1>4</Col1>

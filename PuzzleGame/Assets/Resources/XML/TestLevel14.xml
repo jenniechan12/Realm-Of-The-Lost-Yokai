@@ -2,8 +2,8 @@
 	<PuzzleInfo>
 		<Row>5</Row>
 		<Column>5</Column>
-		<StartRow>2</StartRow>
-		<StartColumn>0</StartColumn>
+		<StartRow>4</StartRow>
+		<StartColumn>1</StartColumn>
 		<EndRow>4</EndRow>
 		<EndColumn>3</EndColumn>
 		<Distance>4</Distance>
@@ -35,7 +35,7 @@
 		<CountType>NORMAL</CountType>
 		<Count>1</Count>
 		<WayPointCount>2</WayPointCount>
-		<Row1>3</Row1>
+		<Row1>4</Row1>
 		<Col1>2</Col1>
 		<Row2>0</Row2>
 		<Col2>2</Col2>
@@ -76,21 +76,6 @@
 		<SpecialType>NONE</SpecialType>
 		<CountType>NORMAL</CountType>
 		<Count>1</Count>
-	</Node>
-	<Node>
-		<Row>1</Row>
-		<Column>2</Column>
-		<LeaveType>SIMPLE</LeaveType>
-		<MoveType>MOVING</MoveType>
-		<SpecialType>NONE</SpecialType>
-		<CountType>NORMAL</CountType>
-		<Count>1</Count>
-		<WayPointCount>2</WayPointCount>
-		<Row1>4</Row1>
-		<Col1>2</Col1>
-		<Row2>1</Row2>
-		<Col2>2</Col2>
-		<MoveSpeed>3.0</MoveSpeed>
 	</Node>
 	<Node>
 		<Row>1</Row>

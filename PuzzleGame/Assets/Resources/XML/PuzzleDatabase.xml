@@ -2,79 +2,61 @@
 	<Puzzle>
 		<Number>1</Number>
 		<Xml>XML/TestLevel1</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>2</Number>
 		<Xml>XML/TestLevel2</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>3</Number>
 		<Xml>XML/TestLevel3</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>4</Number>
 		<Xml>XML/TestLevel4</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>5</Number>
 		<Xml>XML/TestLevel5</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>6</Number>
 		<Xml>XML/TestLevel6</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>7</Number>
 		<Xml>XML/TestLevel7</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>8</Number>
 		<Xml>XML/TestLevel8</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>9</Number>
 		<Xml>XML/TestLevel9</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>10</Number>
 		<Xml>XML/TestLevel10</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>11</Number>
 		<Xml>XML/TestLevel11</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>12</Number>
 		<Xml>XML/TestLevel12</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
 	</Puzzle>
 	<Puzzle>
 		<Number>13</Number>
 		<Xml>XML/TestLevel13</Xml>
-		<Unlocked>Yes</Unlocked>
-		<Completed>No</Completed>
+	</Puzzle>
+	<Puzzle>
+		<Number>14</Number>
+		<Xml>XML/TestLevel14</Xml>
+	</Puzzle>
+	<Puzzle>
+		<Number>15</Number>
+		<Xml>XML/TestTeleport</Xml>
 	</Puzzle>
 </root>

@@ -626,11 +626,11 @@ public class PlayerInventory : MonoBehaviour
 			if (item.Prefab == selectedItem.name)
 			{
 				selectItemBox.transform.position = selectedItem.transform.position;
+				itemNameUI.text = item.Name;
+				itemDescriptionUI.text = item.Description;
+
 				if (!gameManager.Battling())
 				{
-					itemNameUI.text = item.Name;
-					itemDescriptionUI.text = item.Description;
-
 					if (equipManager.IsEquipped(item.Name))
 						unequipItemButton.SetActive(true);
 					else

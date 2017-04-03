@@ -9,6 +9,7 @@ public class BattleManager : MonoBehaviour {
 
 	// Minigame Resources
 	GameObject MINIGAMETESTRESOURCE;
+	GameObject SWIPE_DEFEND;
 
 	// Main Option Buttons
 	GameObject fightButton;
@@ -23,12 +24,16 @@ public class BattleManager : MonoBehaviour {
 	{
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		// Tell the game manager we are in battle (will probably be removed)
+		if (gameManager == null)
+			Debug.Log("Error finding game manager in Battle Manager.");
 		gameManager.BattleTrigger();
 
 
 		MINIGAMETESTRESOURCE = Resources.Load("Prefab/MinigameTest") as GameObject;
 		if (MINIGAMETESTRESOURCE == null)
 			Debug.Log("Error loading minigame test resource in battlemanager");
+
+		SWIPE_DEFEND = Resources.Load("Prefab/Minigames/SwipeDefend/SwipeDefend") as GameObject;
 
 		SetButtons();
 
@@ -79,7 +84,8 @@ public class BattleManager : MonoBehaviour {
 	{
 		Debug.Log("Fight selected.");
 		HideButtons();
-		GameObject minigame = Instantiate(MINIGAMETESTRESOURCE, Vector3.zero, Quaternion.identity);
+		GameObject minigame = Instantiate(SWIPE_DEFEND, Vector3.zero, Quaternion.identity);
+		minigame.name = SWIPE_DEFEND.name;
 	}
 
 	public void FleeClick()
@@ -122,8 +128,10 @@ public class BattleManager : MonoBehaviour {
 		itemButton.SetActive(true);
 	}
 
-	public void MinigameEnd()
+	public void MinigameEnd(int enemyDamage, int playerDamage)
 	{
+		// Get player health script, enemy health script and damage them
+
 		// Change state
 		UnhideButtons();
 	}

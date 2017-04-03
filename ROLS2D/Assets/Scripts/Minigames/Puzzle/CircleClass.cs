@@ -2,30 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleClass: MonoBehaviour {
+public class CircleClass: MonoBehaviour
+{
 
+	protected string circleType;
 	protected int hitCount;
 	protected int hitMax;
-	protected int gridIndex;
+	protected int gridRow;
+	protected int gridCol;
 
-
-	public int HitCount{
-		get{return hitCount;}
-		set{hitCount = value;}
+	public string CircleType {
+		get{ return circleType; }
+		set{ circleType = value; }
 	}
 
-	public int GridIndex{
-		get{ return gridIndex; }
-		set{ gridIndex = value; }
+	public int HitCount {
+		get{ return hitCount; }
+		set{ hitCount = value; }
 	}
 
-	public void SetUpCircle(int hit, int index){
+	public int GridRow {
+		get{ return gridRow; }
+		set{ gridRow = value; }
+	}
+
+	public int GridCol {
+		get{ return gridCol; }
+		set{ gridCol = value; }
+	}
+
+	public void SetUpCircle (int hit, int row, int col)
+	{
 		hitMax = hit;
 		hitCount = hit; 
-		gridIndex = index;
+		gridRow = row;
+		gridCol = col;
 	}
 
-	public void Reset(){
+	public void Reset ()
+	{
 		hitCount = hitMax;
 	}
 

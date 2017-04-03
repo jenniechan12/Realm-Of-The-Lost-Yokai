@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public class PuzzleManager : MonoBehaviour
 {
+	LoadPuzzleManager _loadPuzzleManager; 
 
 	Object BASE_CIRCLE;
 
-	GameObject[] circles;
-
-	Vector3[] circlesPos;
-	Vector3 tempCirclePos;
 	float tempX, tempY;
 
 	private Color[] colorList;
-	int row, col, count, maxCount;
-	public int startPoint, endPoint;
+
+	// Node Information
+	GameObject[,] nodes; 
+	Vector3[,] nodeLocations; 
+	int _rowNum, _colNum, _nodeCount, _startRow, _startCol, _endRow, _endCol; 
 
 	// Line Render
 	private LineRenderer lr;
@@ -23,22 +23,35 @@ public class PuzzleManager : MonoBehaviour
 
 	// User's Input
 	private bool isSwiping, isGameOVer = false;
-	public GameObject startObj, endObj;
+	GameObject previousNodeObject, selectedNodeObject;
 	RaycastHit2D hit;
 
 	void Awake ()
 	{
+		// Map's Information
+		_nodeCount = 0;
+		_rowNum = 0;
+		_colNum = 0;
+		_startRow = 0;
+		_startCol = 0;
+		_endRow = 0;
+		_endCol = 0;
+
+		nodes = new GameObject[0, 0];
+		nodeLocations = new Vector3[0,0];
+
+		previousNodeObject = null; 
+		selectedNodeObject = null;
+
+		// Load Puzzle Manager
+		_loadPuzzleManager = GameObject.Find("TestManager").GetComponent<LoadPuzzleManager>();
+
 		// Line Render
 		lr = GameObject.Find("LineDisplay").GetComponent<LineRenderer>();
 		if (lr == null)
 			Debug.Log ("ERROR - CANNOT FIND LINE DISPLAY GAMEOBJECT IN SCENE");
 
 		colorList = new Color[]{ Color.black, Color.red, Color.blue };
-		row = 3;
-		col = 3; 
-		maxCount = row * col;
-		circles = new GameObject[maxCount];
-		circlesPos = new Vector3[maxCount];
 
 	}
 
@@ -50,7 +63,7 @@ public class PuzzleManager : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate ()
+	void Update ()
 	{
 		CheckMouseSwipe ();
 	}
@@ -60,38 +73,96 @@ public class PuzzleManager : MonoBehaviour
 	// *********************************************************************************************
 	void SetCircle ()
 	{
+		// Load Puzzle from xml file
+		_loadPuzzleManager.LoadPuzzle ("XML/PuzzleEasy1");
+		List<Dictionary<string,string>> _masterList = _loadPuzzleManager.GetPuzzleNodes ();
+		Dictionary<string, string> _tempDictionary = new Dictionary<string, string> ();
 
-		// Calculate the Start and End Point
-		startPoint = (Mathf.FloorToInt (Random.Range (0, 9) / 2)) * 2;
-		endPoint = (Mathf.FloorToInt (Random.Range (0, 9) / 2)) * 2;
-		while (endPoint == startPoint) {
-			endPoint = (Mathf.FloorToInt (Random.Range (0, 9) / 2)) * 2;
+		// Find the Map Node
+		foreach (Dictionary<string,string> _node in _masterList) {
+			if (_node ["type"] == "MAP") {
+				_tempDictionary = _node;
+				_rowNum = int.Parse (_tempDictionary ["row"]);
+				_colNum = int.Parse (_tempDictionary ["col"]);
+				break;
+			}
 		}
 
-		count = 0; 
+		// Find the Start Node
+		foreach (Dictionary<string,string> _node in _masterList) {
+			if (_node ["type"] == "START") {
+				_tempDictionary = _node;
+				_startRow = int.Parse (_tempDictionary ["row"]);
+				_startCol = int.Parse (_tempDictionary ["col"]);
+				break;
+			}
+		}
 
-		// Create the Level 
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < col; j++) {
+		// Find the End Node
+		foreach (Dictionary<string,string> _node in _masterList) {
+			if (_node ["type"] == "END") {
+				_tempDictionary = _node;
+				_endRow = int.Parse (_tempDictionary ["row"]);
+				_endCol = int.Parse (_tempDictionary ["col"]);
+				break;
+			}
+		}
 
-				// Calculate the Circle's Position
-				tempX = (i * 2) - 2;
-				tempY = (j * -2) + 2;
-				tempCirclePos = new Vector3 (tempX, tempY, 0);
+		// Set Node's Stuff
+		_nodeCount = _rowNum * _colNum;
+		nodeLocations = new Vector3[_rowNum, _colNum];
+		nodes = new GameObject[_rowNum, _colNum];
 
-				GameObject tempCircle;
-				tempCircle = Instantiate (BASE_CIRCLE, tempCirclePos, Quaternion.identity) as GameObject;
+		// Set grid locations
+		float distance = 2;
+		float moveDirX = 0;
+		float moveDirY = 0;
 
-				CircleClass ccScript = tempCircle.GetComponent<CircleClass> ();
-				ccScript.SetUpCircle (1, count);
-				tempCircle.GetComponent<SpriteRenderer> ().color = colorList [ccScript.HitCount];
+		Vector3 moveDir; 
 
-				circles [count] = tempCircle;
-				circlesPos [count] = tempCirclePos;
-				count++;
+
+		// Calculate vector to move all locations to center of screen
+		if (_rowNum % 2 == 1)
+			moveDirX = ((_colNum - 1) / 2.0f) * (-distance);
+		else
+			moveDirX = ((_colNum / 2.0f) * (-distance)) - (distance / 2.0f);
+
+		if (_colNum % 2 == 1)
+			moveDirY = ((_rowNum - 1) / 2.0f) * (distance);
+		else
+			moveDirY = ((_rowNum / 2.0f) * (distance)) - (distance / 2.0f);
+
+		moveDir = new Vector3 (moveDirX, moveDirY, 0);
+
+		// Set locations
+		for (int row = 0; row < _rowNum; row++) {
+			for (int col = 0; col < _colNum; col++) {
+				Vector3 tempLocation = new Vector3 (col * distance, -row * distance, 0);
+				tempLocation += moveDir;
+				nodeLocations [row, col] = tempLocation; 
+			}
+		}
+			
+		// Create node in correct location
+		foreach (Dictionary<string, string> node in _masterList) {
+			if (node ["type"] == "SIMPLE") {
+				GameObject tempNode = Instantiate (BASE_CIRCLE, nodeLocations [int.Parse (node ["row"]), int.Parse (node ["col"])], Quaternion.identity) as GameObject;  
+				CircleClass ccScript = tempNode.GetComponent<CircleClass> ();
+
+				ccScript.SetUpCircle (int.Parse (node ["count"]), int.Parse (node ["row"]), int.Parse (node ["col"]));
+				tempNode.GetComponent<SpriteRenderer> ().color = colorList [int.Parse (node ["count"])];
+
+				nodes [int.Parse (node ["row"]), int.Parse (node ["col"])] = tempNode; 
+			} else if (node ["type"] == "DIAGONAL") {
+				GameObject tempNode = Instantiate (BASE_CIRCLE, nodeLocations [int.Parse (node ["row"]), int.Parse (node ["col"])], Quaternion.identity) as GameObject;  
+				CircleClass ccScript = tempNode.GetComponent<CircleClass> ();
+
+				ccScript.SetUpCircle (int.Parse (node ["count"]), int.Parse (node ["row"]), int.Parse (node ["col"]));
+				nodes [int.Parse (node ["row"]), int.Parse (node ["col"])] = tempNode; 
 			}
 		}
 	}
+
 
 	// *********************************************************************************************
 	// HitCircle() Function - When player hit a circle, calculate circle's hit count & display line 
@@ -129,8 +200,8 @@ public class PuzzleManager : MonoBehaviour
 
 		if (Input.GetMouseButtonUp (0)) {
 			isSwiping = false;
-			startObj = null;
-			endObj = null;
+			previousNodeObject = null;
+			selectedNodeObject = null;
 			ResetLevel ();
 		}
 	}
@@ -147,25 +218,25 @@ public class PuzzleManager : MonoBehaviour
 			CircleClass tempCC = hit.collider.gameObject.GetComponent<CircleClass> ();
 
 			// When start object is null, calculate start object
-			if (startObj == null) {
-				if (tempCC.GridIndex == startPoint) {
-					startObj = hit.collider.gameObject;
-					HitCircle (startObj);
+			if (previousNodeObject == null) {
+				if (tempCC.GridRow == _startRow && tempCC.GridCol == _startCol) {
+					previousNodeObject = hit.collider.gameObject;
+					HitCircle (previousNodeObject);
 				} else
-					startObj = null;
+					previousNodeObject = null;
 			} 
 
 			// When end object is null, calculate end object
-			else if (startObj != null && endObj == null && startObj != hit.collider.gameObject) {
-				if (tempCC.GridIndex != endPoint) {
-					if (tempCC.HitCount > 0 && CheckCircleAdjacent (startObj, hit.collider.gameObject)) {
-						endObj = hit.collider.gameObject;
-						HitCircle (endObj);							
+			else if (previousNodeObject != null && selectedNodeObject == null && previousNodeObject != hit.collider.gameObject) {
+				if (tempCC.GridRow != _endRow || tempCC.GridCol != _endCol) {
+					if (tempCC.HitCount > 0 && CheckCircleAdjacent (previousNodeObject, hit.collider.gameObject)) {
+						selectedNodeObject = hit.collider.gameObject;
+						HitCircle (selectedNodeObject);							
 					} else
-						endObj = startObj;
+						selectedNodeObject = previousNodeObject;
 				} else {
-					endObj = hit.collider.gameObject;
-					HitCircle (endObj);
+					selectedNodeObject = hit.collider.gameObject;
+					HitCircle (selectedNodeObject);
 					CalculateWin ();
 					isGameOVer = true;
 					Invoke ("ResetLevel", 1.5f);
@@ -174,20 +245,20 @@ public class PuzzleManager : MonoBehaviour
 			} 
 
 			// When start object and end object are not null, do this
-			else if (startObj != null && endObj != null && endObj != hit.collider.gameObject) {
-				if (tempCC.GridIndex != endPoint) {
-					startObj = endObj;
+			else if (previousNodeObject != null && selectedNodeObject != null && selectedNodeObject != hit.collider.gameObject) {
+				if (tempCC.GridRow != _endRow || tempCC.GridCol != _endCol) {
+					previousNodeObject = selectedNodeObject;
 
-					if (tempCC.HitCount > 0 && CheckCircleAdjacent (endObj, hit.collider.gameObject)) {
-						//startObj = endObj;
-						endObj = hit.collider.gameObject;
-						HitCircle (endObj);
+					if (tempCC.HitCount > 0 && CheckCircleAdjacent (selectedNodeObject, hit.collider.gameObject)) {
+						//previousNodeObject = selectedNodeObject;
+						selectedNodeObject = hit.collider.gameObject;
+						HitCircle (selectedNodeObject);
 					} else
-						endObj = startObj;
+						selectedNodeObject = previousNodeObject;
 				} else {
-					if (CheckCircleAdjacent (endObj, hit.collider.gameObject)) {
-						endObj = hit.collider.gameObject;
-						HitCircle (endObj);
+					if (CheckCircleAdjacent (selectedNodeObject, hit.collider.gameObject)) {
+						selectedNodeObject = hit.collider.gameObject;
+						HitCircle (selectedNodeObject);
 						CalculateWin ();
 						isGameOVer = true;
 						Invoke ("ResetLevel", 1.5f);
@@ -198,17 +269,16 @@ public class PuzzleManager : MonoBehaviour
 		}
 	}
 
+	// *********************************************************************************************
+	// CheckCircleAdjacent(GameObject, GameObject) Function - Check if obj2 is adjacent to obj1
+	// *********************************************************************************************
 	bool CheckCircleAdjacent(GameObject obj1, GameObject obj2){
 		CircleClass obj1cc = obj1.GetComponent<CircleClass> ();
 		CircleClass obj2cc = obj2.GetComponent<CircleClass> ();
 
 
-		if ((Vector3.Distance(obj1.transform.position, obj2.transform.position) == 2) &&
-			(obj2cc.GridIndex == obj1cc.GridIndex + 1 ||
-			obj2cc.GridIndex == obj1cc.GridIndex - 1 ||
-			obj2cc.GridIndex == obj1cc.GridIndex + 3 ||
-			obj2cc.GridIndex == obj1cc.GridIndex - 3
-			)){
+		if (((obj2cc.GridRow == obj1cc.GridRow) && ((obj2cc.GridCol == obj1cc.GridCol - 1) || (obj2cc.GridCol == obj1cc.GridCol + 1))) ||
+			(obj2cc.GridCol == obj1cc.GridCol) && ((obj2cc.GridRow == obj1cc.GridRow - 1) || (obj2cc.GridRow == obj1cc.GridRow + 1))){  
 
 			return true;
 		}
@@ -217,11 +287,14 @@ public class PuzzleManager : MonoBehaviour
 		}
 	}
 
+	// *********************************************************************************************
+	// CalculateWin() Function - Check if Player's Win
+	// *********************************************************************************************
 	void CalculateWin ()
 	{
 		int damageCount = 0;
 
-		foreach (GameObject circle in circles) {
+		foreach (GameObject circle in nodes) {
 			CircleClass tempCCScript = circle.GetComponent<CircleClass> ();
 			if (tempCCScript.HitCount == 0) {
 				damageCount++;
@@ -232,9 +305,12 @@ public class PuzzleManager : MonoBehaviour
 
 	}
 
+	// *********************************************************************************************
+	// ResetLevel() Function - Reset all Node's Information & Line's Information
+	// *********************************************************************************************
 	void ResetLevel ()
 	{
-		foreach (GameObject circle in circles) {
+		foreach (GameObject circle in nodes) {
 			CircleClass tempCC = circle.GetComponent<CircleClass> ();
 			tempCC.Reset ();
 

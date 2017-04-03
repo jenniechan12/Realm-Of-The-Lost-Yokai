@@ -1,26 +1,71 @@
 ﻿<root>
-<Level>
+<Node>
+	<type>MAP</type>
 	<row>3</row>
-	<column>3</column>
-	<CircleInfo>
-		<Circle>
-			<Hit>1</Hit>
-			<GridIndex>0</GridIndex>
-			<PosX></PosX>
-			<PosY></PosY>
-		</Circle>
-		<Circle>
-			<Hit>1</Hit>
-			<GridIndex>1</GridIndex>
-			<PosX></PosX>
-			<PosY></PosY>
-		</Circle>
-		<Circle>
-			<Hit>1</Hit>
-			<GridIndex>2</GridIndex>
-			<PosX></PosX>
-			<PosY></PosY>
-		</Circle>
-	</CircleInfo>
-</Level>
+	<col>3</col>
+</Node>
+<Node>
+	<type>START</type>
+	<row>0</row>
+	<col>0</col>
+</Node>
+<Node>
+	<type>END</type>
+	<row>0</row>
+	<col>2</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>0</row>
+	<col>0</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>0</row>
+	<col>1</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>0</row>
+	<col>2</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>1</row>
+	<col>0</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>1</row>
+	<col>1</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>1</row>
+	<col>2</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>2</row>
+	<col>0</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>2</row>
+	<col>1</col>
+</Node>
+<Node>
+	<type>SIMPLE</type>
+	<count>1</count>
+	<row>2</row>
+	<col>2</col>
+</Node>
 </root>
